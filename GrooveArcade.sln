@@ -9,7 +9,13 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "clientapp", "clientapp\clie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{85794565-09F7-430E-84ED-1188D1120C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webapi", "webapi\webapi.csproj", "{7BBDB0F6-0BCD-4883-94AA-A95D57B42B9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "webapi", "webapi\webapi.csproj", "{7BBDB0F6-0BCD-4883-94AA-A95D57B42B9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrooveArcade.Data", "GrooveArcade.Data\GrooveArcade.Data.csproj", "{A821B963-F541-4577-AFA9-A90A5EC57811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrooveArcade.Data.Models", "GrooveArcade.Data.Models\GrooveArcade.Data.Models.csproj", "{5233F0D9-4B5B-4985-8750-EC635CE4A58E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrooveArcade.Web.DTOs", "GrooveArcade.Web.DTOs\GrooveArcade.Web.DTOs.csproj", "{FB5F467B-450E-4918-B518-0ECC15F34A07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,18 @@ Global
 		{7BBDB0F6-0BCD-4883-94AA-A95D57B42B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BBDB0F6-0BCD-4883-94AA-A95D57B42B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BBDB0F6-0BCD-4883-94AA-A95D57B42B9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A821B963-F541-4577-AFA9-A90A5EC57811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A821B963-F541-4577-AFA9-A90A5EC57811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A821B963-F541-4577-AFA9-A90A5EC57811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A821B963-F541-4577-AFA9-A90A5EC57811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5233F0D9-4B5B-4985-8750-EC635CE4A58E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5233F0D9-4B5B-4985-8750-EC635CE4A58E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5233F0D9-4B5B-4985-8750-EC635CE4A58E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5233F0D9-4B5B-4985-8750-EC635CE4A58E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5F467B-450E-4918-B518-0ECC15F34A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5F467B-450E-4918-B518-0ECC15F34A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5F467B-450E-4918-B518-0ECC15F34A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5F467B-450E-4918-B518-0ECC15F34A07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +52,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A57AA361-BCC7-4272-846F-E487497C17F1} = {20CB914E-A9E3-41CA-9FCA-1585005389D5}
 		{7BBDB0F6-0BCD-4883-94AA-A95D57B42B9A} = {85794565-09F7-430E-84ED-1188D1120C45}
+		{A821B963-F541-4577-AFA9-A90A5EC57811} = {85794565-09F7-430E-84ED-1188D1120C45}
+		{5233F0D9-4B5B-4985-8750-EC635CE4A58E} = {85794565-09F7-430E-84ED-1188D1120C45}
+		{FB5F467B-450E-4918-B518-0ECC15F34A07} = {85794565-09F7-430E-84ED-1188D1120C45}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5906F124-4182-4BE8-8531-2E953935D364}
