@@ -1,0 +1,16 @@
+.sidenav-container {
+    height: 100%;
+}
+
+.i-will-beat-my-son {
+    display: flex;
+    gap: 10px;
+}
+
+.orange {
+    background-color: #ff9800 !important;
+}
+
+mat-sidenav {
+    width: 200px;
+}

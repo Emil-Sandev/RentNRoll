@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$clientapp-primary: mat.define-palette(mat.$orange-palette);
+$clientapp-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+$clientapp-warn: mat.define-palette(mat.$red-palette);
+
+$clientapp-theme: mat.define-dark-theme((
+  color: (
+    primary: $clientapp-primary,
+    accent: $clientapp-accent,
+    warn: $clientapp-warn,
+  )
+));
+
+@include mat.all-component-themes($clientapp-theme);
