@@ -1,17 +1,27 @@
 .sidenav-container {
-    height: 100%;
+  height: 100%;
 }
 
 .i-will-beat-my-son {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .orange {
-    background-color: #ff9800 !important;
+  background-color: #ff9800 !important;
 }
 
 mat-sidenav {
-    width: 200px;
+  width: 15vw;
+}
+
+@media screen and (max-width: 880px) {
+  span {
+    display: none;
+  }
+
+  mat-sidenav {
+    width: auto;
+  }
 }

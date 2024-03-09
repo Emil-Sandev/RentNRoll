@@ -12,6 +12,8 @@ export class SidebarService {
 
   toggleSidebar() {
     const currentStatus = this.isSidebarOpenSubject.getValue();
+    console.log(`current: ${currentStatus}`);
+    console.log(`changed: ${!currentStatus}`);
     this.isSidebarOpenSubject.next(!currentStatus);
   }
 }
