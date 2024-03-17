@@ -1,0 +1,47 @@
+<div class="container">
+  <section>
+    <h2>Luxury Cars</h2>
+    <ngx-slick-carousel class="carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let slide of luxurySlides" class="slide">
+        <img src="{{ slide.img }}" alt="" width="100%" />
+      </div>
+    </ngx-slick-carousel>
+    <button mat-flat-button color="primary" class="order-btn">Rent now</button>
+  </section>
+  <section>
+    <h2>SUVs</h2>
+    <ngx-slick-carousel class="carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let slide of suvSlides" class="slide">
+        <img src="{{ slide.img }}" alt="" width="100%" />
+      </div>
+    </ngx-slick-carousel>
+    <button mat-flat-button color="primary" class="order-btn">Rent now</button>
+  </section>
+  <section>
+    <h2>Hatchbacks</h2>
+    <ngx-slick-carousel class="carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let slide of hatchbackSlides" class="slide">
+        <img src="{{ slide.img }}" alt="" width="100%" />
+      </div>
+    </ngx-slick-carousel>
+    <button mat-flat-button color="primary" class="order-btn">Rent now</button>
+  </section>
+  <section>
+    <h2>Minivans</h2>
+    <ngx-slick-carousel class="carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let slide of minivanSlides" class="slide">
+        <img src="{{ slide.img }}" alt="" width="100%" />
+      </div>
+    </ngx-slick-carousel>
+    <button mat-flat-button color="primary" class="order-btn">Rent now</button>
+  </section>
+  <section>
+    <h2>Sport Cars</h2>
+    <ngx-slick-carousel class="carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let slide of sportcarSlides" class="slide">
+        <img src="{{ slide.img }}" alt="" width="100%" />
+      </div>
+    </ngx-slick-carousel>
+    <button mat-flat-button color="primary" class="order-btn">Rent now</button>
+  </section>
+</div>

@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+  padding: 3rem;
+}
+
+.slick-active img {
+  filter: grayscale(1);
+}
+
+.slick-center img {
+  filter: grayscale(0);
+  filter: drop-shadow(0 0 0.25rem #ff9800);
+}
+
+h2 {
+  text-align: center;
+  font-size: 60px;
+  margin-bottom: 5rem;
+}
+
+.order-btn {
+  border-radius: 15px;
+  margin: 0 auto;
+  display: block;
+  margin-top: 6rem;
+  height: 3rem;
+}
