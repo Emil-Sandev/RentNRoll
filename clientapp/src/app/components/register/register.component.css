@@ -1,7 +1,46 @@
 form {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+}
+
+.fields {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.field-container {
+    width: 18.5rem;
+}
+
+.field-container mat-form-field {
+    width: 100%;
+}
+
+.errors {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+    form {
+        gap: 0;
+    }
+
+    .fields {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .field-container {
+        margin-bottom: 0.5rem;
+    }
 }

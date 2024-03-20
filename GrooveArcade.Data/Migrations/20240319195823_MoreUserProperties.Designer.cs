@@ -4,6 +4,7 @@ using GrooveArcade.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GrooveArcade.Data.Migrations
 {
     [DbContext(typeof(GrooveArcadeDbContext))]
-    partial class GrooveArcadeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240319195823_MoreUserProperties")]
+    partial class MoreUserProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
