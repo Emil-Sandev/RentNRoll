@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GrooveArcade.Web.DTOs.Register
+namespace RentNRoll.Web.DTOs.Register
 {
 	public class RegisterDTO
 	{

@@ -1,4 +1,4 @@
-﻿namespace GrooveArcade.Web.DTOs.Login
+﻿namespace RentNRoll.Web.DTOs.Login
 {
 	public class LoginResponse
 	{

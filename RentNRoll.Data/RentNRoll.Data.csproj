@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GrooveArcade.Data.Models\GrooveArcade.Data.Models.csproj" />
+    <ProjectReference Include="..\RentNRoll.Data.Models\RentNRoll.Data.Models.csproj" />
   </ItemGroup>
 
 </Project>

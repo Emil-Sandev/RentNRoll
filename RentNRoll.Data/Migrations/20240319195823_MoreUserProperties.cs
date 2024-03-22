@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace GrooveArcade.Data.Migrations
+namespace RentNRoll.Data.Migrations
 {
     /// <inheritdoc />
     public partial class MoreUserProperties : Migration

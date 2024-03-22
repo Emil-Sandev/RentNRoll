@@ -1,4 +1,4 @@
-﻿namespace GrooveArcade.Web.DTOs.Refresh
+﻿namespace RentNRoll.Web.DTOs.Refresh
 {
 	public class RefreshModel
 	{

@@ -1,7 +1,7 @@
-﻿using GrooveArcade.Data.Models;
-using GrooveArcade.Web.DTOs.Login;
-using GrooveArcade.Web.DTOs.Refresh;
-using GrooveArcade.Web.DTOs.Register;
+﻿using RentNRoll.Data.Models;
+using RentNRoll.Web.DTOs.Login;
+using RentNRoll.Web.DTOs.Refresh;
+using RentNRoll.Web.DTOs.Register;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

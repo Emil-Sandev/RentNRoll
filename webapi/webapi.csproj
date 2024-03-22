@@ -24,9 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GrooveArcade.Data.Models\GrooveArcade.Data.Models.csproj" />
-    <ProjectReference Include="..\GrooveArcade.Data\GrooveArcade.Data.csproj" />
-    <ProjectReference Include="..\GrooveArcade.Web.DTOs\GrooveArcade.Web.DTOs.csproj" />
+    <ProjectReference Include="..\RentNRoll.Data.Models\RentNRoll.Data.Models.csproj" />
+    <ProjectReference Include="..\RentNRoll.Data\RentNRoll.Data.csproj" />
+    <ProjectReference Include="..\RentNRoll.Web.DTOs\RentNRoll.Web.DTOs.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
-using GrooveArcade.Data;
-using GrooveArcade.Data.Models;
+using RentNRoll.Data;
+using RentNRoll.Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +10,10 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<GrooveArcadeDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<RentNRollDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-	.AddEntityFrameworkStores<GrooveArcadeDbContext>()
+	.AddEntityFrameworkStores<RentNRollDBContext>()
 	.AddDefaultTokenProviders();
 
 builder.Services.AddCors(options =>

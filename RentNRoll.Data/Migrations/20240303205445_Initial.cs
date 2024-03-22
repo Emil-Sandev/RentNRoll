@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GrooveArcade.Data.Migrations
+namespace RentNRoll.Data.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

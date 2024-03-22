@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace GrooveArcade.Data.Models
+namespace RentNRoll.Data.Models
 {
     public class ApplicationUser : IdentityUser
     {
