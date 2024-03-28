@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RentNRoll.Data.Common\RentNRoll.Data.Common.csproj" />
     <ProjectReference Include="..\RentNRoll.Data.Models\RentNRoll.Data.Models.csproj" />
   </ItemGroup>
 
