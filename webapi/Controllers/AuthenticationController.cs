@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using RentNRoll.Services.Token;
-using AutoMapper;
 using RentNRoll.Services.Mapping;
 
 namespace webapi.Controllers
 {
 	[Route("api/[controller]")]
+	[Produces("application/json")]
 	[ApiController]
 	public class AuthenticationController : ControllerBase
 	{

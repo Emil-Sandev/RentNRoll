@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -18,10 +19,21 @@ export class RegisterComponent {
     egn: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authService: AuthenticationService) { }
 
   onSubmit() {
-    console.log(this.registerForm.value);
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    this.authService.register(this.registerForm.value).subscribe({
+      next: data => {
+
+      },
+      error: err => {
+        
+      }
+    });
   }
 
   // shorter access to form controls
