@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RentNRoll.Data.Models\RentNRoll.Data.Models.csproj" />
+    <ProjectReference Include="..\RentNRoll.Services.Mapping\RentNRoll.Services.Mapping.csproj" />
+  </ItemGroup>
+
 </Project>
