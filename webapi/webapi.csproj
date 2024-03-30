@@ -27,6 +27,7 @@
     <ProjectReference Include="..\RentNRoll.Data.Models\RentNRoll.Data.Models.csproj" />
     <ProjectReference Include="..\RentNRoll.Data\RentNRoll.Data.csproj" />
     <ProjectReference Include="..\RentNRoll.Services.Mapping\RentNRoll.Services.Mapping.csproj" />
+    <ProjectReference Include="..\RentNRoll.Services\RentNRoll.Services.csproj" />
     <ProjectReference Include="..\RentNRoll.Web.DTOs\RentNRoll.Web.DTOs.csproj" />
   </ItemGroup>
 

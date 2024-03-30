@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using RentNRoll.Services.Mapping;
 using RentNRoll.Web.DTOs.Login;
+using RentNRoll.Services.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddDbContext<RentNRollDBContext>(options => options.UseSqlServe
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 	.AddEntityFrameworkStores<RentNRollDBContext>()
 	.AddDefaultTokenProviders();
+
+builder.Services.AddSingleton<ITokenService, TokenService>();
 
 builder.Services.AddCors(options =>
 {

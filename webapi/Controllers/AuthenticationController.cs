@@ -5,11 +5,10 @@ using RentNRoll.Web.DTOs.Register;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
+using RentNRoll.Services.Token;
+using AutoMapper;
+using RentNRoll.Services.Mapping;
 
 namespace webapi.Controllers
 {
@@ -18,13 +17,13 @@ namespace webapi.Controllers
 	public class AuthenticationController : ControllerBase
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
-		private readonly IConfiguration _configuration;
+		private readonly ITokenService _tokenService;
 		private readonly ILogger<AuthenticationController> _logger;
 
-		public AuthenticationController(UserManager<ApplicationUser> userManager, IConfiguration configuration, ILogger<AuthenticationController> logger)
+		public AuthenticationController(UserManager<ApplicationUser> userManager, ITokenService tokenService, ILogger<AuthenticationController> logger)
 		{
 			_userManager = userManager;
-			_configuration = configuration;
+			_tokenService = tokenService;
 			_logger = logger;
 		}
 
@@ -41,12 +40,7 @@ namespace webapi.Controllers
 			if (existingUser != null)
 				return Conflict("User already exists.");
 
-			var user = new ApplicationUser
-			{
-				UserName = model.Username,
-				Email = model.Email,
-				SecurityStamp = Guid.NewGuid().ToString()
-			};
+			var user = AutoMapperConfig.MapperInstance.Map<ApplicationUser>(model);
 
 			var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -73,9 +67,9 @@ namespace webapi.Controllers
 			if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
 				return Unauthorized();
 
-			JwtSecurityToken token = GenerateJwt(model.Username);
+			JwtSecurityToken token = _tokenService.GenerateJwt(model.Username);
 
-			var refreshToken = GenerateRefreshToken();
+			var refreshToken = _tokenService.GenerateRefreshToken();
 
 			user.RefreshToken = refreshToken;
 			user.RefreshTokenExpiry = DateTime.UtcNow.AddHours(6);
@@ -100,7 +94,7 @@ namespace webapi.Controllers
 		{
 			_logger.LogInformation("Refresh called");
 
-			var principal = GetPrincipalFromExpiredToken(model.AccessToken);
+			var principal = _tokenService.GetPrincipalFromExpiredToken(model.AccessToken);
 
 			if (principal?.Identity?.Name is null)
 				return Unauthorized();
@@ -110,7 +104,7 @@ namespace webapi.Controllers
 			if (user is null || user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiry < DateTime.UtcNow)
 				return Unauthorized();
 
-			var token = GenerateJwt(principal.Identity.Name);
+			var token = _tokenService.GenerateJwt(principal.Identity.Name);
 
 			_logger.LogInformation("Refresh succeeded");
 
@@ -123,7 +117,7 @@ namespace webapi.Controllers
 		}
 
 		[Authorize]
-		[HttpDelete("Revoke")]
+		[HttpDelete("revoke")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -148,54 +142,6 @@ namespace webapi.Controllers
 			_logger.LogInformation("Revoke succeeded");
 
 			return Ok();
-		}
-
-		private ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
-		{
-			var secret = _configuration["JWT:Secret"] ?? throw new InvalidOperationException("Secret not configured");
-
-			var validation = new TokenValidationParameters
-			{
-				ValidIssuer = _configuration["JWT:ValidIssuer"],
-				ValidAudience = _configuration["JWT:ValidAudience"],
-				IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
-				ValidateLifetime = false
-			};
-
-			return new JwtSecurityTokenHandler().ValidateToken(token, validation, out _);
-		}
-
-		private JwtSecurityToken GenerateJwt(string username)
-		{
-			var authClaims = new List<Claim>
-			{
-				new Claim(ClaimTypes.Name, username),
-				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-			};
-
-			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-				_configuration["JWT:Secret"] ?? throw new InvalidOperationException("Secret not configured")));
-
-			var token = new JwtSecurityToken(
-				issuer: _configuration["JWT:ValidIssuer"],
-				audience: _configuration["JWT:ValidAudience"],
-				expires: DateTime.UtcNow.AddMinutes(60),
-				claims: authClaims,
-				signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
-				);
-
-			return token;
-		}
-
-		private static string GenerateRefreshToken()
-		{
-			var randomNumber = new byte[64];
-
-			using var generator = RandomNumberGenerator.Create();
-
-			generator.GetBytes(randomNumber);
-
-			return Convert.ToBase64String(randomNumber);
 		}
 	}
 }

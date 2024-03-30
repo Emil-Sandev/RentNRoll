@@ -21,7 +21,8 @@ namespace RentNRoll.Web.DTOs.Register
 		{
 			configuration.CreateMap<RegisterDTO, ApplicationUser>()
 				.ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username))
-				.ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.Phone));
+				.ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.Phone))
+				.ForMember(dest => dest.SecurityStamp, opt => Guid.NewGuid().ToString());
 		}
 	}
 }
