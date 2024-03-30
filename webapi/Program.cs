@@ -7,6 +7,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using RentNRoll.Services.Mapping;
+using RentNRoll.Web.DTOs.Login;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,6 +79,9 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
+
+// custom mappings will happen only in DTO project
+AutoMapperConfig.RegisterMappings(typeof(LoginDTO).Assembly);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -20,6 +20,10 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder) { }
 
+  onSubmit() {
+    console.log(this.registerForm.value);
+  }
+
   // shorter access to form controls
   get f() { return this.registerForm.controls; }
 }
