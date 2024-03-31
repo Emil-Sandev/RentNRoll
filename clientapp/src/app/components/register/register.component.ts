@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { SwalService } from '../../services/swal/swal.service';
+
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,7 @@ export class RegisterComponent {
     egn: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthenticationService) { }
+  constructor(private fb: FormBuilder, private authService: AuthenticationService, private swalService: SwalService) { }
 
   onSubmit() {
     if (this.registerForm.invalid) {
@@ -31,7 +33,7 @@ export class RegisterComponent {
 
       },
       error: err => {
-        
+      
       }
     });
   }
