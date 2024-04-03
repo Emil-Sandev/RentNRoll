@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RentNRoll.Common\RentNRoll.Common.csproj" />
+    <ProjectReference Include="..\RentNRoll.Data.Common\RentNRoll.Data.Common.csproj" />
+  </ItemGroup>
+
 </Project>
