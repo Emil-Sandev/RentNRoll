@@ -11,7 +11,7 @@ namespace RentNRoll.Data.Models
 		[MaxLength(CarModelNameMaxLength)]
 		public string Model { get; set; } = null!;
 
-        [ForeignKey(nameof(Brand))]
+		[ForeignKey(nameof(Brand))]
 		public int BrandId { get; set; }
 
 		[Required]
@@ -23,20 +23,20 @@ namespace RentNRoll.Data.Models
 		[Required]
 		public virtual Category Category { get; set; } = null!;
 
-        public int Year { get; set; }
+		public int Year { get; set; }
 
 		[Required]
 		[MaxLength(CarLicensePlateMaxLength)]
 		public string LicensePlate { get; set; } = null!;
 
-        public decimal PricePerDay { get; set; }
+		public decimal PricePerDay { get; set; }
 
-        public bool IsAvailable { get; set; }
+		public bool IsAvailable { get; set; }
 
 		[MaxLength(CarDescriptionMaxLength)]
-        public string? Description { get; set; }
+		public string? Description { get; set; }
 
-        public int Seats { get; set; }
+		public int Seats { get; set; }
 
 		public virtual ICollection<Rental> Rentals { get; set; } = new HashSet<Rental>();
 	}

@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace RentNRoll.Data.Models
 {
+	[PrimaryKey(nameof(CarId), nameof(CustomerId))]
 	public class Rental
 	{
 		[ForeignKey(nameof(Car))]
@@ -17,10 +19,10 @@ namespace RentNRoll.Data.Models
 		[Required]
 		public virtual ApplicationUser Customer { get; set; } = null!;
 
-        public DateTime RentalDate { get; set; }
+		public DateTime RentalDate { get; set; }
 
-        public DateTime ReturnDate { get; set; }
+		public DateTime ReturnDate { get; set; }
 
-        public decimal TotalPrice { get; set; }
-    }
+		public decimal TotalPrice { get; set; }
+	}
 }

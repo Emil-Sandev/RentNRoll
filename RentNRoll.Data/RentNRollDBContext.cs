@@ -11,6 +11,15 @@ namespace RentNRoll.Data
 		public DbSet<Brand> Brands { get; set; }
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Car> Cars { get; set; }
-        public DbSet<Rental> Rentals { get; set; }
+		public DbSet<Rental> Rentals { get; set; }
+
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
+			base.OnModelCreating(builder);
+
+			// decimal precisions
+			builder.Entity<Car>().Property(c => c.PricePerDay).HasPrecision(18, 2);
+			builder.Entity<Rental>().Property(r => r.TotalPrice).HasPrecision(18, 2);
+		}
 	}
 }
