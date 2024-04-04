@@ -32,5 +32,12 @@ namespace RentNRoll.Data.Models
         public decimal PricePerDay { get; set; }
 
         public bool IsAvailable { get; set; }
-    }
+
+		[MaxLength(CarDescriptionMaxLength)]
+        public string? Description { get; set; }
+
+        public int Seats { get; set; }
+
+		public virtual ICollection<Rental> Rentals { get; set; } = new HashSet<Rental>();
+	}
 }

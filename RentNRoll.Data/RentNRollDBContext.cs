@@ -8,8 +8,9 @@ namespace RentNRoll.Data
 	{
 		public RentNRollDBContext(DbContextOptions<RentNRollDBContext> options) : base(options) { }
 
-        public DbSet<Brand> Brands { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Car> Cars { get; set; }
-    }
+		public DbSet<Brand> Brands { get; set; }
+		public DbSet<Category> Categories { get; set; }
+		public DbSet<Car> Cars { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
+	}
 }
