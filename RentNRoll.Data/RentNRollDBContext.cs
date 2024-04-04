@@ -20,6 +20,12 @@ namespace RentNRoll.Data
 			// decimal precisions
 			builder.Entity<Car>().Property(c => c.PricePerDay).HasPrecision(18, 2);
 			builder.Entity<Rental>().Property(r => r.TotalPrice).HasPrecision(18, 2);
+
+			var entityTypes = builder.Model.GetEntityTypes();
+
+			// disable cascade delete
+			var cascadeKeys = entityTypes.SelectMany(et => et.GetForeignKeys().Where(fk => fk.DeleteBehavior == DeleteBehavior.Cascade)).ToList();
+			cascadeKeys.ForEach(ck => ck.DeleteBehavior = DeleteBehavior.Restrict);
 		}
 	}
 }
