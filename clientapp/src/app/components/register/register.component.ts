@@ -31,7 +31,7 @@ export class RegisterComponent {
 
     this.authService.register(this.registerForm.value).subscribe({
       next: data => {
-
+        
       },
       error: (error: HttpErrorResponse) => {
         this.swalService.fireSwal('Error!', error.error, 'error')
