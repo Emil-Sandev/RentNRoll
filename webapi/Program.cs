@@ -10,6 +10,9 @@ using System.Text;
 using RentNRoll.Services.Mapping;
 using RentNRoll.Web.DTOs.Login;
 using RentNRoll.Services.Token;
+using RentNRoll.Data.Common.Repositories;
+using RentNRoll.Data.Repositories;
+using RentNRoll.Services.Data.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +22,12 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 	.AddEntityFrameworkStores<RentNRollDBContext>()
 	.AddDefaultTokenProviders();
 
+// repositories
+builder.Services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
+// services
+builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 
 builder.Services.AddCors(options =>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using RentNRoll.Services.Token;
 using RentNRoll.Services.Mapping;
+using RentNRoll.Services.Data.Users;
 
 namespace webapi.Controllers
 {
@@ -18,12 +19,14 @@ namespace webapi.Controllers
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly ITokenService _tokenService;
+		private readonly IUserService _userService;
 		private readonly ILogger<AuthenticationController> _logger;
 
-		public AuthenticationController(UserManager<ApplicationUser> userManager, ITokenService tokenService, ILogger<AuthenticationController> logger)
+		public AuthenticationController(UserManager<ApplicationUser> userManager, ITokenService tokenService, IUserService userService, ILogger<AuthenticationController> logger)
 		{
 			_userManager = userManager;
 			_tokenService = tokenService;
+			_userService = userService;
 			_logger = logger;
 		}
 
@@ -35,10 +38,14 @@ namespace webapi.Controllers
 		{
 			_logger.LogInformation("Register called");
 
-			var existingUser = await _userManager.FindByNameAsync(model.Username);
+			if (await _userManager.FindByNameAsync(model.Username) is not null)
+				return Conflict("Another user is using this username.");
 
-			if (existingUser != null)
-				return Conflict("User already exists.");
+			if (await _userManager.FindByEmailAsync(model.Email) is not null)
+				return Conflict("Another user is using this email.");
+
+			if (await _userService.ExistsByEgnAsync(model.EGN))
+				return Conflict("Another user is using this EGN");
 
 			var user = AutoMapperConfig.MapperInstance.Map<ApplicationUser>(model);
 
