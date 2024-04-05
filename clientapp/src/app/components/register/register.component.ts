@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { SwalService } from '../../services/swal/swal.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -32,8 +33,8 @@ export class RegisterComponent {
       next: data => {
 
       },
-      error: err => {
-      
+      error: (error: HttpErrorResponse) => {
+        this.swalService.fireSwal('Error!', error.error, 'error')
       }
     });
   }

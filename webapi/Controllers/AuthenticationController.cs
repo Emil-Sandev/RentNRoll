@@ -45,7 +45,7 @@ namespace webapi.Controllers
 				return Conflict("Another user is using this email.");
 
 			if (await _userService.ExistsByEgnAsync(model.EGN))
-				return Conflict("Another user is using this EGN");
+				return Conflict("Another user is using this EGN.");
 
 			var user = AutoMapperConfig.MapperInstance.Map<ApplicationUser>(model);
 
