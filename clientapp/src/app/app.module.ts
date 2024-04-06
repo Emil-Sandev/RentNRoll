@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     ToolbarComponent,
     RegisterComponent,
     HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

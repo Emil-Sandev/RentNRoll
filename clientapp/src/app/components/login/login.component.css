@@ -1,0 +1,27 @@
+form {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: calc(100vh - 1.5rem);
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+}
+
+.field-container {
+    width: 18.5rem;
+}
+
+.field-container mat-form-field {
+    width: 100%;
+}
+
+.errors {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
