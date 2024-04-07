@@ -31,10 +31,12 @@ export class RegisterComponent {
 
     this.authService.register(this.registerForm.value).subscribe({
       next: data => {
-
+        this.swalService.fireSwal('Successful registration!', 'You can now log into your account.', 'success', '/login');
       },
       error: (error: HttpErrorResponse) => {
-        this.swalService.fireSwal('Error!', error.error, 'error')
+        if (error.status === 409) {
+          this.swalService.fireSwal('Error!', error.error, 'error')
+        }
       }
     });
   }
