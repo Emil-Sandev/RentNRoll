@@ -35,7 +35,7 @@ export class RegisterComponent {
       },
       error: (error: HttpErrorResponse) => {
         if (error.status === 409) {
-          this.swalService.fireSwal('Error!', error.error, 'error')
+          this.swalService.fireSwal('Error!', error.error, 'error');
         }
       }
     });
