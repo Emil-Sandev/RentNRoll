@@ -49,57 +49,20 @@
       <mat-icon>chevron_left</mat-icon>
     </button>
     <div class="cars">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Mini Cooper</mat-card-title>
-        </mat-card-header>
-        <img
-          mat-card-image
-          src="https://prodhq.s3.amazonaws.com/img/content/gp1/models/2023/mini_cooper/countryman_black_profile_1400x400.png"
-        />
-        <mat-card-content>
-          <p>
-            Kolata na emkata bace.
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button color="primary">Details</button>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Mini Cooper</mat-card-title>
-        </mat-card-header>
-        <img
-          mat-card-image
-          src="https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960"
-        />
-        <mat-card-content>
-          <p>
-            Kolata na emkata bace.
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button color="primary">Details</button>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Mini Cooper</mat-card-title>
-        </mat-card-header>
-        <img
-          mat-card-image
-          src="https://prodhq.s3.amazonaws.com/img/content/gp1/models/2023/mini_cooper/countryman_black_profile_1400x400.png"
-        />
-        <mat-card-content>
-          <p>
-            Kolata na emkata bace.
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button color="primary">Details</button>
-        </mat-card-actions>
-      </mat-card>
+      @for (car of filteredAndPagedCarDTO.cars; track car.id) {
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{ car.model }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src={{car.imageUrl}} />
+          <mat-card-content>
+            <p>{{ car.description }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary">Details</button>
+          </mat-card-actions>
+        </mat-card>
+      }
     </div>
     <button mat-icon-button color="primary" class="right">
       <mat-icon>chevron_right</mat-icon>

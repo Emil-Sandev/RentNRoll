@@ -3,6 +3,8 @@ import { OnInit } from '@angular/core';
 import { BrandService } from '../../services/brand/brand.service';
 import { CategoryService } from '../../services/category/category.service';
 import { FormControl } from '@angular/forms';
+import { CarService } from '../../services/car/car.service';
+import { CarQueryModel, FilteredAndPagedCarDTO } from '../../models/car.model';
 
 @Component({
   selector: 'app-cars',
@@ -22,7 +24,9 @@ export class CarsComponent implements OnInit {
   category = new FormControl('');
   filteredCategories: string[] = [];
 
-  constructor(private brandService: BrandService, private categoryService: CategoryService) { }
+  filteredAndPagedCarDTO: FilteredAndPagedCarDTO = {} as FilteredAndPagedCarDTO;
+
+  constructor(private brandService: BrandService, private categoryService: CategoryService, private carService: CarService) { }
 
   ngOnInit(): void {
     this.brandService.getBrands().subscribe(data => {
@@ -33,6 +37,11 @@ export class CarsComponent implements OnInit {
     this.categoryService.getCategories().subscribe(data => {
       this.categories = data;
       this.filteredCategories = this.categories.slice();
+    });
+
+    this.carService.getCars({} as CarQueryModel).subscribe(data => {
+      this.filteredAndPagedCarDTO = data;
+      console.log(this.filteredAndPagedCarDTO);
     });
   }
 
