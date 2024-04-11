@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { BrandService } from '../../services/brand/brand.service';
 import { CategoryService } from '../../services/category/category.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-cars',
@@ -9,13 +10,39 @@ import { CategoryService } from '../../services/category/category.service';
   styleUrl: './cars.component.css'
 })
 export class CarsComponent implements OnInit {
+  // brands
   brands: string[] = [];
+  @ViewChild('brandInput') brandInput: ElementRef<HTMLInputElement> = {} as ElementRef;
+  brand = new FormControl('');
+  filteredBrands: string[] = [];
+
+  // categories
   categories: string[] = [];
+  @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement> = {} as ElementRef;
+  category = new FormControl('');
+  filteredCategories: string[] = [];
 
   constructor(private brandService: BrandService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.brandService.getBrands().subscribe(data => this.brands = data);
-    this.categoryService.getCategories().subscribe(data => this.categories = data);
+    this.brandService.getBrands().subscribe(data => {
+      this.brands = data;
+      this.filteredBrands = this.brands.slice();
+    });
+
+    this.categoryService.getCategories().subscribe(data => {
+      this.categories = data;
+      this.filteredCategories = this.categories.slice();
+    });
+  }
+
+  filterBrands() {
+    const filterValue = this.brandInput.nativeElement.value.toLowerCase();
+    this.filteredBrands = this.brands.filter(b => b.toLowerCase().startsWith(filterValue));
+  }
+
+  filterCategories() {
+    const filterValue = this.categoryInput.nativeElement.value.toLowerCase();
+    this.filteredCategories = this.categories.filter(c => c.toLowerCase().startsWith(filterValue));
   }
 }

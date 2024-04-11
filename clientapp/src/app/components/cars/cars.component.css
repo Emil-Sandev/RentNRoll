@@ -1,4 +1,42 @@
 .container {
-    margin: 3rem;
-    width: 100%;
+  margin: 3rem;
+  width: 100%;
+}
+
+.filters-container {
+  display: flex;
+  gap: 2rem;
+}
+
+mat-slider {
+  width: 30rem;
+}
+
+.slider-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+mat-card {
+  max-width: 450px;
+  display: flex;
+  gap: 1rem;
+}
+
+mat-card img {
+  height: 300px;
+}
+
+.cars-container {
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cars {
+  display: flex;
+  gap: 7rem;
+  margin: 0 3rem 0 3rem;
 }

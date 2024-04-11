@@ -1,3 +1,108 @@
 <div class="container">
-    <p>cars</p>
+  <div class="filters-container">
+    <mat-form-field>
+      <mat-label>Brands</mat-label>
+      <input
+        #brandInput
+        type="text"
+        placeholder="Pick one"
+        matInput
+        [formControl]="brand"
+        [matAutocomplete]="autoBrands"
+        (input)="filterBrands()"
+        (focus)="filterBrands()"
+      />
+      <mat-autocomplete requireSelection #autoBrands="matAutocomplete">
+        @for (brand of filteredBrands; track brand) {
+        <mat-option [value]="brand">{{ brand }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Categories</mat-label>
+      <input
+        #categoryInput
+        type="text"
+        placeholder="Pick one"
+        matInput
+        [formControl]="category"
+        [matAutocomplete]="autoCategory"
+        (input)="filterCategories()"
+        (focus)="filterCategories()"
+      />
+      <mat-autocomplete requireSelection #autoCategory="matAutocomplete">
+        @for (category of filteredCategories; track category) {
+        <mat-option [value]="category">{{ category }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    <div class="slider-container">
+      <p>Price:</p>
+      <mat-slider min="0" max="500" discrete step="5">
+        <input value="0" matSliderStartThumb />
+        <input value="500" matSliderEndThumb />
+      </mat-slider>
+    </div>
+  </div>
+  <div class="cars-container">
+    <button mat-icon-button color="primary" class="left">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <div class="cars">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Mini Cooper</mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="https://prodhq.s3.amazonaws.com/img/content/gp1/models/2023/mini_cooper/countryman_black_profile_1400x400.png"
+        />
+        <mat-card-content>
+          <p>
+            Kolata na emkata bace.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary">Details</button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Mini Cooper</mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960"
+        />
+        <mat-card-content>
+          <p>
+            Kolata na emkata bace.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary">Details</button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Mini Cooper</mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="https://prodhq.s3.amazonaws.com/img/content/gp1/models/2023/mini_cooper/countryman_black_profile_1400x400.png"
+        />
+        <mat-card-content>
+          <p>
+            Kolata na emkata bace.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary">Details</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <button mat-icon-button color="primary" class="right">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
 </div>
