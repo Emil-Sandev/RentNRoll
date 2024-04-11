@@ -21,6 +21,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { LoginComponent } from './components/login/login.component';
+import { CarsComponent } from './components/cars/cars.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LoginComponent } from './components/login/login.component';
     RegisterComponent,
     HomeComponent,
     LoginComponent,
+    CarsComponent,
   ],
   imports: [
     BrowserModule,
