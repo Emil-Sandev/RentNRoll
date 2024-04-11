@@ -24,6 +24,8 @@ namespace RentNRoll.Data.Seeders
 				new Category { Name = "Roadster", CreatedOn = DateTime.UtcNow },
 				new Category { Name = "Sports car", CreatedOn = DateTime.UtcNow },
 			});
+
+			await context.SaveChangesAsync();
 		}
 	}
 }

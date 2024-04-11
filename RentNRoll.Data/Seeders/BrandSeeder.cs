@@ -32,6 +32,8 @@ namespace RentNRoll.Data.Seeders
 				new Brand { Name = "Jaguar", CreatedOn = DateTime.UtcNow },
 				new Brand { Name = "Chevrolet", CreatedOn = DateTime.UtcNow },
 			});
+
+			await context.SaveChangesAsync();
 		}
 	}
 }

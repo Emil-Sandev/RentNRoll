@@ -94,6 +94,8 @@ namespace RentNRoll.Data.Seeders
                 new Car { Model = "Chevrolet Cruze", BrandId = 21, CategoryId = 1, Year = 2020, LicensePlate = "OPQ890", PricePerDay = 60, IsAvailable = true, Description = "Compact sedan with comfortable ride quality, spacious interior, and good fuel economy.", Seats = 5, CreatedOn = DateTime.UtcNow },
 				new Car { Model = "Chevrolet Equinox", BrandId = 21, CategoryId = 2, Year = 2023, LicensePlate = "RST123", PricePerDay = 85, IsAvailable = true, Description = "Compact SUV offering a smooth ride, spacious cabin, and user-friendly features.", Seats = 5, CreatedOn = DateTime.UtcNow },
 			});
+
+            await context.SaveChangesAsync();
 		}
 	}
 }

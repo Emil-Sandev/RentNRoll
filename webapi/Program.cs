@@ -13,6 +13,7 @@ using RentNRoll.Services.Token;
 using RentNRoll.Data.Common.Repositories;
 using RentNRoll.Data.Repositories;
 using RentNRoll.Services.Data.Users;
+using RentNRoll.Data.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -91,6 +92,12 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
+
+using (var serviceScope = app.Services.CreateScope())
+{
+	var dbContext = serviceScope.ServiceProvider.GetRequiredService<RentNRollDBContext>();
+	await new RentNRollSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider);
+}
 
 // custom mappings will happen only in DTO project
 AutoMapperConfig.RegisterMappings(typeof(LoginDTO).Assembly);
