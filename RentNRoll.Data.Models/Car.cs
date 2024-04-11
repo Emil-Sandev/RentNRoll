@@ -38,6 +38,8 @@ namespace RentNRoll.Data.Models
 
 		public int Seats { get; set; }
 
-		public virtual ICollection<Rental> Rentals { get; set; } = new HashSet<Rental>();
+        public string? ImageUrl { get; set; }
+
+        public virtual ICollection<Rental> Rentals { get; set; } = new HashSet<Rental>();
 	}
 }
