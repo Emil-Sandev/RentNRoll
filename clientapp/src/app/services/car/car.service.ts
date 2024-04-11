@@ -14,7 +14,8 @@ export class CarService {
     let params = new HttpParams();
     for (const key in queryModel) {
       if (queryModel.hasOwnProperty(key)) {
-        params = params.set(key, queryModel[key as keyof CarQueryModel]);
+        // @ts-ignore
+        params = params.set(key, queryModel[key]);
       }
     }
 

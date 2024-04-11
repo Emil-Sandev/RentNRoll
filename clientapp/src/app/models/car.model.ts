@@ -1,6 +1,6 @@
 export interface CarQueryModel {
-    brand:       string;
-    category:    string;
+    brand:       string | null;
+    category:    string | null;
     minPrice:    number;
     maxPrice:    number;
     currentPage: number;

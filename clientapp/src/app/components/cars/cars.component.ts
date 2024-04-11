@@ -24,6 +24,7 @@ export class CarsComponent implements OnInit {
   category = new FormControl('');
   filteredCategories: string[] = [];
 
+  queryModel: CarQueryModel = {} as CarQueryModel;
   filteredAndPagedCarDTO: FilteredAndPagedCarDTO = {} as FilteredAndPagedCarDTO;
 
   constructor(private brandService: BrandService, private categoryService: CategoryService, private carService: CarService) { }
@@ -39,9 +40,19 @@ export class CarsComponent implements OnInit {
       this.filteredCategories = this.categories.slice();
     });
 
-    this.carService.getCars({} as CarQueryModel).subscribe(data => {
-      this.filteredAndPagedCarDTO = data;
-      console.log(this.filteredAndPagedCarDTO);
+    // initial car load
+    this.refreshCars();
+
+    this.brand.valueChanges.subscribe(value => {
+      value = value ?? '';
+      this.queryModel.brand = value;
+      this.refreshCars();
+    });
+
+    this.category.valueChanges.subscribe(value => {
+      value = value ?? '';
+      this.queryModel.category = value;
+      this.refreshCars();
     });
   }
 
@@ -53,5 +64,9 @@ export class CarsComponent implements OnInit {
   filterCategories() {
     const filterValue = this.categoryInput.nativeElement.value.toLowerCase();
     this.filteredCategories = this.categories.filter(c => c.toLowerCase().startsWith(filterValue));
+  }
+
+  refreshCars() {
+    this.carService.getCars(this.queryModel).subscribe(data => this.filteredAndPagedCarDTO = data);
   }
 }
