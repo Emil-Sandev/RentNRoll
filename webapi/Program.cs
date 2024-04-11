@@ -14,6 +14,7 @@ using RentNRoll.Data.Common.Repositories;
 using RentNRoll.Data.Repositories;
 using RentNRoll.Services.Data.Users;
 using RentNRoll.Data.Seeders;
+using RentNRoll.Services.Data.Brands;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,8 +29,9 @@ builder.Services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeleta
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
 // services
-builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddSingleton<ITokenService, TokenService>();
+builder.Services.AddTransient<IBrandService, BrandService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddCors(options =>
 {
