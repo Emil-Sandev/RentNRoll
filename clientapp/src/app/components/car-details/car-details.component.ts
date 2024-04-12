@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CarDetailsDTO } from '../../models/car.model';
 import { CarService } from '../../services/car/car.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { StripeService } from '../../services/stripe/stripe.service';
+import { StripePaymentDTO, StripeResponse } from '../../models/stripe.model';
 
 @Component({
   selector: 'app-car-details',
@@ -21,7 +23,7 @@ export class CarDetailsComponent implements OnInit {
   });
   totalPrice: number = 0;
 
-  constructor(private carService: CarService, private route: ActivatedRoute) {
+  constructor(private carService: CarService, private route: ActivatedRoute, private stripeService: StripeService) {
     this.tomorrow.setDate(this.tomorrow.getDate() + 1);
   }
 
@@ -42,7 +44,7 @@ export class CarDetailsComponent implements OnInit {
     const startDate = this.range.get('start')?.value;
     const endDate = this.range.get('end')?.value;
 
-    if (!endDate){
+    if (!endDate) {
       this.totalPrice = this.carDetails.pricePerDay;
       return;
     }
@@ -54,5 +56,17 @@ export class CarDetailsComponent implements OnInit {
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
       this.totalPrice = diffDays * this.carDetails.pricePerDay;
     }
+  }
+
+  goToCheckout() {
+    const stripePaymentDto: StripePaymentDTO = {
+      model: this.carDetails.model,
+      imageUrl: this.carDetails.imageUrl,
+      totalPrice: this.totalPrice
+    };
+
+    this.stripeService.createCheckout(stripePaymentDto).subscribe((data: StripeResponse) => {
+      window.location.href = data.url;
+    });
   }
 }
