@@ -1,4 +1,5 @@
-﻿using RentNRoll.Web.DTOs.Car;
+﻿using RentNRoll.Data.Models;
+using RentNRoll.Web.DTOs.Car;
 
 namespace RentNRoll.Services.Data.Cars
 {
@@ -7,5 +8,9 @@ namespace RentNRoll.Services.Data.Cars
 		Task<PagedAndFilteredCarDTO> GetCarsPageAsync(CarQueryModel queryModel);
 
 		Task<CarDetailsDTO> GetCarDetailsAsync(int id);
+
+		int GetCarIdByModel(string model);
+
+		Task MakeCarUnavailableAsync(int id);
 	}
 }

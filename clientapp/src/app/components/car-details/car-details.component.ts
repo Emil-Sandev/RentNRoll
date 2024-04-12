@@ -62,7 +62,9 @@ export class CarDetailsComponent implements OnInit {
     const stripePaymentDto: StripePaymentDTO = {
       model: this.carDetails.model,
       imageUrl: this.carDetails.imageUrl,
-      totalPrice: this.totalPrice
+      totalPrice: this.totalPrice,
+      rentalDate: this.currentDate,
+      returnDate: this.tomorrow
     };
 
     this.stripeService.createCheckout(stripePaymentDto).subscribe((data: StripeResponse) => {

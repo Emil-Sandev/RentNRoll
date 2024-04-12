@@ -6,45 +6,55 @@ using RentNRoll.Web.DTOs.Car;
 
 namespace RentNRoll.Services.Data.Cars
 {
-    public class CarService : ICarService
-    {
-        private readonly IDeletableEntityRepository<Car> _carRepository;
+	public class CarService : ICarService
+	{
+		private readonly IDeletableEntityRepository<Car> _carRepository;
 
-        public CarService(IDeletableEntityRepository<Car> carRepository) => _carRepository = carRepository;
+		public CarService(IDeletableEntityRepository<Car> carRepository) => _carRepository = carRepository;
 
-        public async Task<CarDetailsDTO> GetCarDetailsAsync(int id)
-        {
-            var details = await _carRepository.AllAsNoTracking().Where(c => c.Id == id).To<CarDetailsDTO>().FirstAsync();
-            return details;
-        }
+		public int GetCarIdByModel(string model) => _carRepository.All().First(c => c.Model == model).Id;
 
-        public async Task<PagedAndFilteredCarDTO> GetCarsPageAsync(CarQueryModel queryModel)
-        {
-            IQueryable<Car> carQuery = _carRepository.AllAsNoTracking().Where(c => c.PricePerDay >= queryModel.MinPrice && c.PricePerDay <= queryModel.MaxPrice && c.IsAvailable);
+		public async Task<CarDetailsDTO> GetCarDetailsAsync(int id)
+		{
+			var details = await _carRepository.AllAsNoTracking().Where(c => c.Id == id).To<CarDetailsDTO>().FirstAsync();
+			return details;
+		}
 
-            if (!string.IsNullOrEmpty(queryModel.Brand))
-            {
-                carQuery = carQuery.Where(c => c.Brand.Name == queryModel.Brand);
-            }
+		public async Task<PagedAndFilteredCarDTO> GetCarsPageAsync(CarQueryModel queryModel)
+		{
+			IQueryable<Car> carQuery = _carRepository.AllAsNoTracking().Where(c => c.PricePerDay >= queryModel.MinPrice && c.PricePerDay <= queryModel.MaxPrice && c.IsAvailable);
 
-            if (!string.IsNullOrEmpty(queryModel.Category))
-            {
-                carQuery = carQuery.Where(c => c.Category.Name == queryModel.Category);
-            }
+			if (!string.IsNullOrEmpty(queryModel.Brand))
+			{
+				carQuery = carQuery.Where(c => c.Brand.Name == queryModel.Brand);
+			}
 
-            IEnumerable<CarDTO> cars = await carQuery
-                .Skip((queryModel.CurrentPage - 1) * queryModel.CarsPerPage)
-                .Take(queryModel.CarsPerPage)
-                .To<CarDTO>()
-                .ToListAsync();
+			if (!string.IsNullOrEmpty(queryModel.Category))
+			{
+				carQuery = carQuery.Where(c => c.Category.Name == queryModel.Category);
+			}
 
-            int totalCount = carQuery.Count();
+			IEnumerable<CarDTO> cars = await carQuery
+				.Skip((queryModel.CurrentPage - 1) * queryModel.CarsPerPage)
+				.Take(queryModel.CarsPerPage)
+				.To<CarDTO>()
+				.ToListAsync();
 
-            return new PagedAndFilteredCarDTO
-            {
-                TotalCount = totalCount,
-                Cars = cars
-            };
-        }
-    }
+			int totalCount = carQuery.Count();
+
+			return new PagedAndFilteredCarDTO
+			{
+				TotalCount = totalCount,
+				Cars = cars
+			};
+		}
+
+		public async Task MakeCarUnavailableAsync(int id)
+		{
+			var car = _carRepository.All().First(c => c.Id == id);
+			car.IsAvailable = false;
+			_carRepository.Update(car);
+			await _carRepository.SaveChangesAsync();
+		}
+	}
 }

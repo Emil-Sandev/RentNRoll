@@ -11,5 +11,7 @@ namespace RentNRoll.Services.Data.Users
 		public UserService(IRepository<ApplicationUser> userRepository) => _userRepository = userRepository;
 
 		public async Task<bool> ExistsByEgnAsync(string egn) => await _userRepository.AllAsNoTracking().AnyAsync(u => u.EGN == egn);
+
+		public string GetUserIdByEmail(string email) => _userRepository.AllAsNoTracking().First(u => u.Email == email).Id;
 	}
 }

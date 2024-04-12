@@ -17,6 +17,7 @@ using RentNRoll.Data.Seeders;
 using RentNRoll.Services.Data.Brands;
 using RentNRoll.Services.Data.Categories;
 using RentNRoll.Services.Data.Cars;
+using RentNRoll.Services.Data.Rentals;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,8 +34,9 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 // services
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddTransient<IBrandService, BrandService>();
-builder.Services.AddTransient<ICategoryService,CategoryService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<ICarService, CarService>();
+builder.Services.AddTransient<IRentalService, RentalService>();
 builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddCors(options =>
