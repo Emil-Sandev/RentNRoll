@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { CarService } from '../../services/car/car.service';
 import { CarQueryModel, FilteredAndPagedCarDTO } from '../../models/car.model';
 import { MatSliderDragEvent } from '@angular/material/slider';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cars',
@@ -28,7 +29,7 @@ export class CarsComponent implements OnInit {
   queryModel: CarQueryModel = {} as CarQueryModel;
   filteredAndPagedCarDTO: FilteredAndPagedCarDTO = {} as FilteredAndPagedCarDTO;
 
-  constructor(private brandService: BrandService, private categoryService: CategoryService, private carService: CarService) { }
+  constructor(private brandService: BrandService, private categoryService: CategoryService, private carService: CarService, private router: Router) { }
 
   ngOnInit(): void {
     this.brandService.getBrands().subscribe(data => {
@@ -75,6 +76,10 @@ export class CarsComponent implements OnInit {
   updateMaxPrice(event: MatSliderDragEvent) {
     this.queryModel.maxPrice = event.value;
     this.refreshCars();
+  }
+
+  redirectToCarDetails(id: number) {
+    this.router.navigate([`/car/${id}`]);
   }
 
   refreshCars() {

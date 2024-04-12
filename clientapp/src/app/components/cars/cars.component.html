@@ -59,7 +59,7 @@
             <p>{{ car.description }}</p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button color="primary">Details</button>
+            <button mat-button color="primary" (click)="redirectToCarDetails(car.id)">Details</button>
           </mat-card-actions>
         </mat-card>
       }
