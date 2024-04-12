@@ -5,5 +5,7 @@ namespace RentNRoll.Services.Data.Cars
 	public interface ICarService
 	{
 		Task<PagedAndFilteredCarDTO> GetCarsPageAsync(CarQueryModel queryModel);
+
+		Task<CarDetailsDTO> GetCarDetailsAsync(int id);
 	}
 }
