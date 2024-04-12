@@ -39,8 +39,8 @@
     <div class="slider-container">
       <p>Price:</p>
       <mat-slider min="0" max="500" discrete step="5">
-        <input value="0" matSliderStartThumb />
-        <input value="500" matSliderEndThumb />
+        <input matSliderStartThumb (dragEnd)="updateMinPrice($event)">
+        <input matSliderEndThumb (dragEnd)="updateMaxPrice($event)">
       </mat-slider>
     </div>
   </div>

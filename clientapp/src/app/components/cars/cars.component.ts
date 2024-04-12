@@ -5,6 +5,7 @@ import { CategoryService } from '../../services/category/category.service';
 import { FormControl } from '@angular/forms';
 import { CarService } from '../../services/car/car.service';
 import { CarQueryModel, FilteredAndPagedCarDTO } from '../../models/car.model';
+import { MatSliderDragEvent } from '@angular/material/slider';
 
 @Component({
   selector: 'app-cars',
@@ -64,6 +65,16 @@ export class CarsComponent implements OnInit {
   filterCategories() {
     const filterValue = this.categoryInput.nativeElement.value.toLowerCase();
     this.filteredCategories = this.categories.filter(c => c.toLowerCase().startsWith(filterValue));
+  }
+
+  updateMinPrice(event: MatSliderDragEvent) {
+    this.queryModel.minPrice = event.value;
+    this.refreshCars();
+  }
+
+  updateMaxPrice(event: MatSliderDragEvent) {
+    this.queryModel.maxPrice = event.value;
+    this.refreshCars();
   }
 
   refreshCars() {
