@@ -1,10 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CarDetailsDTO } from '../../models/car.model';
+import { CarService } from '../../services/car/car.service';
+import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-car-details',
   templateUrl: './car-details.component.html',
   styleUrl: './car-details.component.css'
 })
-export class CarDetailsComponent {
+export class CarDetailsComponent implements OnInit {
+  id: number = 0;
+  carDetails: CarDetailsDTO = {} as CarDetailsDTO;
+  currentDate: Date = new Date();
+  tomorrow: Date = new Date(this.currentDate);
 
+  range = new FormGroup({
+    start: new FormControl<Date | null>(this.currentDate),
+    end: new FormControl<Date | null>(this.tomorrow)
+  });
+  totalPrice: number = 0;
+
+  constructor(private carService: CarService, private route: ActivatedRoute) {
+    this.tomorrow.setDate(this.tomorrow.getDate() + 1);
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(p => this.id = p['id']);
+
+    this.carService.getCarDetails(this.id).subscribe(data => {
+      this.carDetails = data;
+      this.totalPrice = this.carDetails.pricePerDay * 2;
+    });
+
+    this.range.valueChanges.subscribe(() => {
+      this.calculatePrice();
+    });
+  }
+
+  calculatePrice(): void {
+    const startDate = this.range.get('start')?.value;
+    const endDate = this.range.get('end')?.value;
+
+    if (startDate && endDate) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      const diffTime = end.getTime() - start.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+      this.totalPrice = diffDays * this.carDetails.pricePerDay;
+    }
+  }
 }

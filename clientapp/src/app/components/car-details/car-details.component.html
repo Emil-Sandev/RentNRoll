@@ -1,1 +1,25 @@
-<p>car-details works!</p>
+<div class="container">
+    <img src={{carDetails.imageUrl}} class="car-img">
+    <div class="details-action-container">
+        <div class="car-details">
+            <p>Model: <span>{{carDetails.model}}</span></p>
+            <p>Brand: <span>{{carDetails.brand}}</span></p>
+            <p>Category: <span>{{carDetails.category}}</span></p>
+            <p>Year: <span>{{carDetails.year}}</span></p>
+            <p>Seats: <span>{{carDetails.seats}}</span></p>
+            <span class="description">{{carDetails.description}}</span>
+        </div>
+        <div class="actions">
+            <mat-form-field>
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                  <input matStartDate formControlName="start" placeholder="Start date">
+                  <input matEndDate formControlName="end" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <button mat-flat-button color="primary">{{totalPrice}}$</button>
+        </div>
+    </div>
+</div>

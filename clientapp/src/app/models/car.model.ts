@@ -18,3 +18,15 @@ export interface CarDTO {
     imageUrl:    string;
     description: string;
 }
+
+export interface CarDetailsDTO {
+    id:          number;
+    model:       string;
+    year:        number;
+    pricePerDay: number;
+    brand:       string;
+    category:    string;
+    description: string;
+    imageUrl:    string;
+    seats:       number;
+}

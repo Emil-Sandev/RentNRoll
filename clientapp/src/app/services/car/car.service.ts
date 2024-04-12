@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CarQueryModel, FilteredAndPagedCarDTO } from '../../models/car.model';
+import { CarDetailsDTO, CarQueryModel, FilteredAndPagedCarDTO } from '../../models/car.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
@@ -22,6 +22,12 @@ export class CarService {
     return this.http.get<FilteredAndPagedCarDTO>(
       environment.apiUrl + '/api/Car/getCars',
       { params }
+    );
+  }
+
+  getCarDetails(id: number): Observable<CarDetailsDTO> {
+    return this.http.get<CarDetailsDTO>(
+      environment.apiUrl + `/api/Car/getCarDetails/${id}`
     );
   }
 }
