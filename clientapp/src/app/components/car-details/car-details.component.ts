@@ -42,6 +42,11 @@ export class CarDetailsComponent implements OnInit {
     const startDate = this.range.get('start')?.value;
     const endDate = this.range.get('end')?.value;
 
+    if (!endDate){
+      this.totalPrice = this.carDetails.pricePerDay;
+      return;
+    }
+
     if (startDate && endDate) {
       const start = new Date(startDate);
       const end = new Date(endDate);
