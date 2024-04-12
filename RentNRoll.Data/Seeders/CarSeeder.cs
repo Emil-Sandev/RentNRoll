@@ -39,7 +39,7 @@ namespace RentNRoll.Data.Seeders
                 new Car { Model = "Mazda3", BrandId = 7, CategoryId = 5, Year = 2023, LicensePlate = "NOP012", PricePerDay = 65, IsAvailable = true, Description = "Dynamic and fuel-efficient hatchback with advanced safety features.", Seats = 5, CreatedOn = DateTime.UtcNow, ImageUrl = "https://media.ed.edmunds-media.com/mazda/3/2024/oem/2024_mazda_3_4dr-hatchback_25-s-carbon-edition_fq_oem_1_1600.jpg" },
                 
                 // Fiat cars
-                new Car { Model = "Fiat 500", BrandId = 8, CategoryId = 5, Year = 2020, LicensePlate = "QRS345", PricePerDay = 55, IsAvailable = true, Description = "Chic and compact city car with retro styling and nimble handling.", Seats = 4, CreatedOn = DateTime.UtcNow, ImageUrl = "https://www.carpixel.net/w/61f361d4153f637ff8587a417b6109d0/fiat-500-la-prima-wallpaper-hd-99501.jpg" },
+                new Car { Model = "Fiat 500", BrandId = 8, CategoryId = 5, Year = 2020, LicensePlate = "QRS345", PricePerDay = 55, IsAvailable = true, Description = "Chic and compact city car with retro styling and nimble handling.", Seats = 4, CreatedOn = DateTime.UtcNow, ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/8a/Fiat-500-vorne2.jpg" },
                 new Car { Model = "Fiat Panda", BrandId = 8, CategoryId = 5, Year = 2021, LicensePlate = "TUV678", PricePerDay = 50, IsAvailable = true, Description = "Affordable and practical city car with a spacious interior and low running costs.", Seats = 4, CreatedOn = DateTime.UtcNow, ImageUrl = "https://static.dir.bg/uploads/images/2020/05/22/2514713/768x576.jpg?_=1681247109" },
                 
                 // Alfa Romeo cars
