@@ -26,8 +26,11 @@ export class CarsComponent implements OnInit {
   category = new FormControl('');
   filteredCategories: string[] = [];
 
-  queryModel: CarQueryModel = {} as CarQueryModel;
+  queryModel: CarQueryModel = { currentPage: 1 } as CarQueryModel;
   filteredAndPagedCarDTO: FilteredAndPagedCarDTO = {} as FilteredAndPagedCarDTO;
+
+  canGoToPreviousPage: boolean = true;
+  canGoToNextPage: boolean = true;
 
   constructor(private brandService: BrandService, private categoryService: CategoryService, private carService: CarService, private router: Router) { }
 
@@ -82,7 +85,21 @@ export class CarsComponent implements OnInit {
     this.router.navigate([`/car/${id}`]);
   }
 
+  goToPreviousPage() {
+    this.queryModel.currentPage--;
+    this.refreshCars();
+  }
+
+  goToNextPage() {
+    this.queryModel.currentPage++;
+    this.refreshCars();
+  }
+
   refreshCars() {
-    this.carService.getCars(this.queryModel).subscribe(data => this.filteredAndPagedCarDTO = data);
+    this.carService.getCars(this.queryModel).subscribe(data => {
+      this.filteredAndPagedCarDTO = data;
+      this.canGoToPreviousPage = this.queryModel.currentPage > 1;
+      this.canGoToNextPage = this.queryModel.currentPage * 3 < this.filteredAndPagedCarDTO.totalCount;
+    });
   }
 }

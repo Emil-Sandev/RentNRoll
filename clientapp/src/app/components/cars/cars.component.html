@@ -45,7 +45,7 @@
     </div>
   </div>
   <div class="cars-container">
-    <button mat-icon-button color="primary" class="left">
+    <button mat-icon-button color="primary" class="left" [disabled]="!canGoToPreviousPage" (click)="goToPreviousPage()">
       <mat-icon>chevron_left</mat-icon>
     </button>
     <div class="cars">
@@ -64,7 +64,7 @@
         </mat-card>
       }
     </div>
-    <button mat-icon-button color="primary" class="right">
+    <button mat-icon-button color="primary" class="right" [disabled]="!canGoToNextPage" (click)="goToNextPage()">
       <mat-icon>chevron_right</mat-icon>
     </button>
   </div>
