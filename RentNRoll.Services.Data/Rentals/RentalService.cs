@@ -1,4 +1,5 @@
-﻿using RentNRoll.Data.Common.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using RentNRoll.Data.Common.Repositories;
 using RentNRoll.Data.Models;
 using RentNRoll.Services.Data.Cars;
 using RentNRoll.Services.Mapping;
@@ -22,6 +23,18 @@ namespace RentNRoll.Services.Data.Rentals
 			await _carService.MakeCarUnavailableAsync(createRentalDTO.CarId);
 			await _rentalRepository.AddAsync(AutoMapperConfig.MapperInstance.Map<Rental>(createRentalDTO));
 			await _rentalRepository.SaveChangesAsync();
+		}
+
+		public async Task<IEnumerable<RentalDetailsUserDTO>> GetRentalDetailsByUsernameAsync(string username)
+		{
+			var rentalDetails = await _rentalRepository.AllAsNoTracking()
+				.Include(r => r.Customer)
+				.Include(r => r.Car)
+				.Where(r => r.Customer.UserName == username)
+				.To<RentalDetailsUserDTO>()
+				.ToListAsync();
+
+			return rentalDetails;
 		}
 	}
 }
