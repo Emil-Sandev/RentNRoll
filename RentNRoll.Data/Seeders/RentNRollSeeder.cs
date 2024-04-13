@@ -13,6 +13,8 @@
 				new BrandSeeder(),
 				new CategorySeeder(),
 				new CarSeeder(),
+				new RoleSeeder(),
+				new AdminSeeder(),
 			};
 
 			foreach (var seeder in seeders)

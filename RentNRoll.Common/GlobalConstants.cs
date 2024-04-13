@@ -12,5 +12,8 @@
 
 		// Category
 		public const int CategoryNameMaxLength = 20;
-    }
+
+		// Admin role
+		public const string AdministratorRole = "admin";
+	}
 }
