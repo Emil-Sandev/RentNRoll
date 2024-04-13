@@ -17,7 +17,7 @@ namespace RentNRoll.Services.Token
 		{
 			var authClaims = new List<Claim>
 			{
-				new Claim(ClaimTypes.Name, username),
+				new Claim("username", username),
 				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
 			};
 
