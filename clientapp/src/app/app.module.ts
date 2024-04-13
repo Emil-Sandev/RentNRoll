@@ -29,6 +29,7 @@ import { CarsComponent } from './components/cars/cars.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { SuccessComponent } from './components/success/success.component';
 import { CancelComponent } from './components/cancel/cancel.component';
+import { MyRentalsComponent } from './components/my-rentals/my-rentals.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CancelComponent } from './components/cancel/cancel.component';
     CarDetailsComponent,
     SuccessComponent,
     CancelComponent,
+    MyRentalsComponent,
   ],
   imports: [
     BrowserModule,

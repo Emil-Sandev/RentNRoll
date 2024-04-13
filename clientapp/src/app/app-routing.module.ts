@@ -8,6 +8,7 @@ import { CarDetailsComponent } from './components/car-details/car-details.compon
 import { AuthGuard } from './auth.guard';
 import { SuccessComponent } from './components/success/success.component';
 import { CancelComponent } from './components/cancel/cancel.component';
+import { MyRentalsComponent } from './components/my-rentals/my-rentals.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'car/:id', component: CarDetailsComponent, canActivate: [AuthGuard] },
   { path: 'success', component: SuccessComponent },
   { path: 'cancel', component: CancelComponent },
+  { path: 'my-rentals', component: MyRentalsComponent },
 ];
 
 @NgModule({
