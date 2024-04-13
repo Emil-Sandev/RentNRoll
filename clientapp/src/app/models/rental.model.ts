@@ -2,7 +2,7 @@ export interface RentalDetailsUserDTO {
     model:      string;
     brand:      string;
     category:   string;
-    rentalDate: Date;
-    returnDate: Date;
+    rentalDate: string;
+    returnDate: string;
     totalPrice: number;
 }
