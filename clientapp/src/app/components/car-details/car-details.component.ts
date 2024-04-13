@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarDetailsDTO } from '../../models/car.model';
 import { CarService } from '../../services/car/car.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { StripeService } from '../../services/stripe/stripe.service';
 import { StripePaymentDTO, StripeResponse } from '../../models/stripe.model';
@@ -59,12 +59,19 @@ export class CarDetailsComponent implements OnInit {
   }
 
   goToCheckout() {
+    const startDate = this.range.get('start')?.value;
+    let endDate = this.range.get('end')?.value;
+
+    if (!endDate) {
+      endDate = startDate;
+    }
+
     const stripePaymentDto: StripePaymentDTO = {
       model: this.carDetails.model,
       imageUrl: this.carDetails.imageUrl,
       totalPrice: this.totalPrice,
-      rentalDate: this.currentDate,
-      returnDate: this.tomorrow
+      rentalDate: startDate!,
+      returnDate: endDate!,
     };
 
     this.stripeService.createCheckout(stripePaymentDto).subscribe((data: StripeResponse) => {
