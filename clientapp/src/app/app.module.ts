@@ -27,6 +27,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { LoginComponent } from './components/login/login.component';
 import { CarsComponent } from './components/cars/cars.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
+import { SuccessComponent } from './components/success/success.component';
+import { CancelComponent } from './components/cancel/cancel.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { CarDetailsComponent } from './components/car-details/car-details.compon
     LoginComponent,
     CarsComponent,
     CarDetailsComponent,
+    SuccessComponent,
+    CancelComponent,
   ],
   imports: [
     BrowserModule,

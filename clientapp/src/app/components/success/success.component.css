@@ -1,0 +1,19 @@
+.container {
+    margin: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 7rem;
+}
+
+h1 {
+    font-size: 80px;
+}
+
+button {
+    width: 200px;
+    height: 100px;
+    font-size: 25px;
+    border-radius: 15px;
+}

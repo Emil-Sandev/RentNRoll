@@ -1,0 +1,21 @@
+.container {
+    margin: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+p {
+    font-size: 30px;
+    color: red;
+}
+
+img {
+    border-radius: 20px;
+}
