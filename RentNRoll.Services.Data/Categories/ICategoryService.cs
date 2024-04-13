@@ -2,6 +2,8 @@
 {
 	public interface ICategoryService
 	{
-		public Task<IEnumerable<string>> GetCategoriesAsync();
+		Task<IEnumerable<string>> GetCategoriesAsync();
+
+		Task<int> GetCategoryIdByNameAsync(string name);
 	}
 }

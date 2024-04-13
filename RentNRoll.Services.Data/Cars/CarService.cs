@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RentNRoll.Data.Common.Repositories;
 using RentNRoll.Data.Models;
+using RentNRoll.Services.Data.Brands;
+using RentNRoll.Services.Data.Categories;
+using RentNRoll.Services.Images;
 using RentNRoll.Services.Mapping;
 using RentNRoll.Web.DTOs.Car;
 
@@ -9,8 +12,17 @@ namespace RentNRoll.Services.Data.Cars
 	public class CarService : ICarService
 	{
 		private readonly IDeletableEntityRepository<Car> _carRepository;
+		private readonly ICategoryService _categoryService;
+		private readonly IBrandService _brandService;
+		private readonly ICloudinaryService _cloudinaryService;
 
-		public CarService(IDeletableEntityRepository<Car> carRepository) => _carRepository = carRepository;
+		public CarService(IDeletableEntityRepository<Car> carRepository, ICategoryService categoryService, IBrandService brandService, ICloudinaryService cloudinaryService)
+		{
+			_carRepository = carRepository;
+			_categoryService = categoryService;
+			_brandService = brandService;
+			_cloudinaryService = cloudinaryService;
+		}
 
 		public int GetCarIdByModel(string model) => _carRepository.All().First(c => c.Model == model).Id;
 
@@ -54,6 +66,27 @@ namespace RentNRoll.Services.Data.Cars
 			var car = _carRepository.All().First(c => c.Id == id);
 			car.IsAvailable = false;
 			_carRepository.Update(car);
+			await _carRepository.SaveChangesAsync();
+		}
+
+		public async Task CreateCarAsync(CreateCarDTO createCarDTO)
+		{
+			var car = new Car
+			{
+				BrandId = await _brandService.GetBrandIdByNameAsync(createCarDTO.Brand),
+				CategoryId = await _categoryService.GetCategoryIdByNameAsync(createCarDTO.Category),
+				Model = createCarDTO.Model,
+				Year = createCarDTO.Year,
+				Seats = createCarDTO.Seats,
+				PricePerDay = createCarDTO.PricePerDay,
+				Description = createCarDTO.Description,
+				ImageUrl = _cloudinaryService.UploadImage(createCarDTO.Image),
+				LicensePlate = createCarDTO.LicensePlate,	
+				IsAvailable = true,
+				CreatedOn = DateTime.UtcNow,
+			};
+
+			await _carRepository.AddAsync(car);
 			await _carRepository.SaveChangesAsync();
 		}
 	}

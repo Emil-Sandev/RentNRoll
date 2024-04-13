@@ -18,6 +18,7 @@ using RentNRoll.Services.Data.Brands;
 using RentNRoll.Services.Data.Categories;
 using RentNRoll.Services.Data.Cars;
 using RentNRoll.Services.Data.Rentals;
+using RentNRoll.Services.Images;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,7 @@ builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<ICarService, CarService>();
 builder.Services.AddTransient<IRentalService, RentalService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 builder.Services.AddCors(options =>
 {

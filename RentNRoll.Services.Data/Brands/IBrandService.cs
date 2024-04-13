@@ -3,5 +3,7 @@
 	public interface IBrandService
 	{
 		Task<IEnumerable<string>> GetBrandsAsync();
+
+		Task<int> GetBrandIdByNameAsync(string name);	
 	}
 }

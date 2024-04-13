@@ -11,6 +11,12 @@ namespace RentNRoll.Services.Data.Brands
 
 		public BrandService(IRepository<Brand> brandRepository) => _brandRepository = brandRepository;
 
+		public async Task<int> GetBrandIdByNameAsync(string name) 
+		{
+			var brand = await _brandRepository.AllAsNoTracking().FirstAsync(b=>b.Name == name);
+			return brand.Id;
+		}
+
 		public async Task<IEnumerable<string>> GetBrandsAsync() => await _brandRepository.AllAsNoTracking().Select(b => b.Name).ToListAsync();
 	}
 }
