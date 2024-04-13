@@ -30,6 +30,10 @@ export class LoginComponent {
         localStorage.setItem('token', loginResponse.jwtToken);
         localStorage.setItem('expires', loginResponse.expiration);
         localStorage.setItem('refreshToken', loginResponse.refreshToken);
+        this.authService.isAdmin().subscribe(data => {
+          console.log(data);
+          this.authService.isAdminEmitter.emit(data);
+        });
         this.router.navigate(['']);
       },
       error: (error: HttpErrorResponse) => {

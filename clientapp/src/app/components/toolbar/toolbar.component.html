@@ -1,5 +1,12 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button (click)="toggleSidebar()">
-        <mat-icon>menu</mat-icon>
-    </button>
+  <button mat-icon-button (click)="toggleSidebar()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  @if(isAdmin.value) {
+    <button mat-button [matMenuTriggerFor]="menu">Admin Panel</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Cars</button>
+      <button mat-menu-item>Rentals</button>
+    </mat-menu>
+  }
 </mat-toolbar>

@@ -21,6 +21,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
@@ -64,6 +65,7 @@ import { MyRentalsComponent } from './components/my-rentals/my-rentals.component
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
+    MatMenuModule,
     ReactiveFormsModule,
     SlickCarouselModule
   ],

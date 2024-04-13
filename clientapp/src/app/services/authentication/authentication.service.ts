@@ -1,14 +1,17 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LoginResponse } from '../../models/login.model';
+import { TokenService } from '../token/token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient) { }
+  isAdminEmitter: EventEmitter<boolean> = new EventEmitter();
+
+  constructor(private http: HttpClient, private tokenService: TokenService) { }
 
   register(userData: any): Observable<any> {
     return this.http.post(
@@ -29,5 +32,17 @@ export class AuthenticationService {
       return true;
     }
     return false;
+  }
+
+  isAdmin(): Observable<boolean> {
+    const username: string = this.tokenService.getUsernameFromToken();
+
+    if (username) {
+      return this.http.get<boolean>(
+        environment.apiUrl + `/api/Authentication/isAdmin?username=${username}`
+      );
+    }
+
+    return of(false);
   }
 }
