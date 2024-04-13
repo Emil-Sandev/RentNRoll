@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using RentNRoll.Services.Token;
 using RentNRoll.Services.Mapping;
 using RentNRoll.Services.Data.Users;
+using static RentNRoll.Common.GlobalConstants;
 
 namespace webapi.Controllers
 {
@@ -149,6 +150,17 @@ namespace webapi.Controllers
 			_logger.LogInformation("Revoke succeeded");
 
 			return Ok();
+		}
+
+		[HttpGet("isAdmin")]
+		public async Task<ActionResult<bool>> IsAdmin(string username)
+		{
+			var user = await _userManager.FindByNameAsync(username);
+
+			if (user is null)
+				return Conflict("No such user");
+
+			return Ok(await _userManager.IsInRoleAsync(user, AdministratorRole));
 		}
 	}
 }
