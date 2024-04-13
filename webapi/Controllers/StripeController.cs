@@ -59,8 +59,8 @@ namespace webapi.Controllers
 					},
 				},
 				Mode = "payment",
-				SuccessUrl = "https://localhost:4200/success",
-				CancelUrl = "https://localhost:4200/cancel",
+				SuccessUrl = "http://localhost:4200/success",
+				CancelUrl = "http://localhost:4200/cancel",
 			};
 
 			var sessionService = new SessionService();
