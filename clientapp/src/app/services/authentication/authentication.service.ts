@@ -23,4 +23,11 @@ export class AuthenticationService {
       userData
     );
   }
+
+  isAuthenticated(): boolean {
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
+  }
 }
