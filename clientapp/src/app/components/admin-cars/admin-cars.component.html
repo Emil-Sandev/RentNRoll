@@ -68,13 +68,8 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
-        <mat-paginator #paginator
-               (page)="handlePageEvent($event)"
-               [length]="adminCarsDTO.totalCount"
-               [pageSize]="5"
-               [hidePageSize]="true"
-               [pageIndex]="pageIndex"
-               aria-label="Select page">
-</mat-paginator>
+        <mat-paginator #paginator (page)="handlePageEvent($event)" [length]="adminCarsDTO.totalCount" [pageSize]="5"
+            [hidePageSize]="true" [pageIndex]="pageIndex" aria-label="Select page">
+        </mat-paginator>
     </div>
 </div>

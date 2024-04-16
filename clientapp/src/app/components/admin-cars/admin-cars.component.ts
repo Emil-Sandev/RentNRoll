@@ -5,7 +5,7 @@ import { BrandService } from '../../services/brand/brand.service';
 import { CategoryService } from '../../services/category/category.service';
 import { CarService } from '../../services/car/car.service';
 import { MatSliderDragEvent } from '@angular/material/slider';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-admin-cars',
@@ -30,6 +30,8 @@ export class AdminCarsComponent implements OnInit {
   adminCarsDTO: AdminCarsDTO = {} as AdminCarsDTO;
 
   displayedColumns: string[] = ['model', 'brand', 'category', 'year', 'seats', 'pricePerDay', 'description'];
+  @ViewChild('paginator') paginator: MatPaginator = {} as MatPaginator;
+
 
   constructor(private brandService: BrandService, private categoryService: CategoryService, private carService: CarService) { }
 
@@ -49,13 +51,17 @@ export class AdminCarsComponent implements OnInit {
 
     this.brand.valueChanges.subscribe(value => {
       value = value ?? '';
+      this.queryModel.currentPage = 1;
       this.queryModel.brand = value;
+      this.paginator.firstPage();
       this.refreshCars();
     });
 
     this.category.valueChanges.subscribe(value => {
       value = value ?? '';
+      this.queryModel.currentPage = 1;
       this.queryModel.category = value;
+      this.paginator.firstPage();
       this.refreshCars();
     });
   }
@@ -72,11 +78,13 @@ export class AdminCarsComponent implements OnInit {
 
   updateMinPrice(event: MatSliderDragEvent) {
     this.queryModel.minPrice = event.value;
+    this.paginator.firstPage();
     this.refreshCars();
   }
 
   updateMaxPrice(event: MatSliderDragEvent) {
     this.queryModel.maxPrice = event.value;
+    this.paginator.firstPage();
     this.refreshCars();
   }
 
