@@ -1,0 +1,30 @@
+.container {
+    margin: 3rem;
+    width: 90%;
+}
+
+.filters-container {
+    display: flex;
+    gap: 2rem;
+}
+
+mat-slider {
+    width: 30rem;
+}
+
+.slider-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+th {
+    background-color: #FF9800 !important;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+td {
+    font-size: 15px;
+}

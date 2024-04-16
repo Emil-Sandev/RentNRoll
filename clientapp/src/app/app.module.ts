@@ -22,6 +22,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
@@ -32,6 +33,7 @@ import { CarDetailsComponent } from './components/car-details/car-details.compon
 import { SuccessComponent } from './components/success/success.component';
 import { CancelComponent } from './components/cancel/cancel.component';
 import { MyRentalsComponent } from './components/my-rentals/my-rentals.component';
+import { AdminCarsComponent } from './components/admin-cars/admin-cars.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { MyRentalsComponent } from './components/my-rentals/my-rentals.component
     SuccessComponent,
     CancelComponent,
     MyRentalsComponent,
+    AdminCarsComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { MyRentalsComponent } from './components/my-rentals/my-rentals.component
     MatNativeDateModule,
     MatTableModule,
     MatMenuModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
     SlickCarouselModule
   ],

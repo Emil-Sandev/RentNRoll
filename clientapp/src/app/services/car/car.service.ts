@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CarDetailsDTO, CarQueryModel, FilteredAndPagedCarDTO } from '../../models/car.model';
+import { AdminCarsDTO, CarDetailsDTO, CarQueryModel, FilteredAndPagedCarDTO } from '../../models/car.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
@@ -28,6 +28,21 @@ export class CarService {
   getCarDetails(id: number): Observable<CarDetailsDTO> {
     return this.http.get<CarDetailsDTO>(
       environment.apiUrl + `/api/Car/getCarDetails/${id}`
+    );
+  }
+
+  getAdminCars(queryModel: CarQueryModel): Observable<AdminCarsDTO> {
+    let params = new HttpParams();
+    for (const key in queryModel) {
+      if (queryModel.hasOwnProperty(key)) {
+        // @ts-ignore
+        params = params.set(key, queryModel[key]);
+      }
+    }
+
+    return this.http.get<AdminCarsDTO>(
+      environment.apiUrl + '/api/Car/getAdminCars',
+      { params }
     );
   }
 }

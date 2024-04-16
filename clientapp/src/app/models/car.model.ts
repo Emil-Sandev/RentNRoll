@@ -30,3 +30,20 @@ export interface CarDetailsDTO {
     imageUrl:    string;
     seats:       number;
 }
+
+export interface AdminCarsDTO {
+    totalCount: number;
+    cars:       AdminCarDTO[];
+}
+
+export interface AdminCarDTO {
+    id:          number;
+    model:       string;
+    year:        number;
+    pricePerDay: number;
+    brand:       string;
+    category:    string;
+    description: string;
+    imageUrl:    string;
+    seats:       number;
+}
