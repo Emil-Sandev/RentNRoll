@@ -14,13 +14,20 @@ namespace webapi.Controllers
 		public CarController(ICarService carService) => _carService = carService;
 
 		[HttpGet("getCars")]
-		public async Task<ActionResult<PagedAndFilteredCarDTO>> GetCars([FromQuery] CarQueryModel queryModel)
+		public async Task<ActionResult<PagedAndFilteredCarDTO<CarDTO>>> GetCars([FromQuery] CarQueryModel queryModel)
 		{
-			var pagedAndFilteredDto = await _carService.GetCarsPageAsync(queryModel);
+			var pagedAndFilteredDto = await _carService.GetCarsPageAsync<CarDTO>(queryModel);
 			return Ok(pagedAndFilteredDto);
 		}
 
-		[HttpGet("getCarDetails/{id}")]
+		[HttpGet("getAdminCars")]
+        public async Task<ActionResult<PagedAndFilteredCarDTO<CarDetailsDTO>>> GetAdminCars([FromQuery] CarQueryModel queryModel)
+        {
+            var pagedAndFilteredDto = await _carService.GetCarsPageAsync<CarDetailsDTO>(queryModel);
+            return Ok(pagedAndFilteredDto);
+        }
+
+        [HttpGet("getCarDetails/{id}")]
 		public async Task<ActionResult<CarDetailsDTO>> GetCars(int id)
 		{
 			var carDetailsDTO = await _carService.GetCarDetailsAsync(id);

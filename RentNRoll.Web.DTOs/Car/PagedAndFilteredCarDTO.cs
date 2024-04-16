@@ -1,8 +1,8 @@
 ﻿namespace RentNRoll.Web.DTOs.Car
 {
-	public class PagedAndFilteredCarDTO
+	public class PagedAndFilteredCarDTO<T>
 	{
         public int TotalCount { get; set; }
-        public IEnumerable<CarDTO> Cars { get; set; } = new HashSet<CarDTO>();
+        public IEnumerable<T> Cars { get; set; } = new HashSet<T>();
     }
 }
