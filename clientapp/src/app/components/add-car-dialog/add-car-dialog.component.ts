@@ -45,8 +45,8 @@ export class AddCarDialogComponent implements OnInit {
     }
   }
 
-  addCar() {
-    
-    this.carService.createCar(this.addCarForm.value, this.image);
+  addCar(): void {
+    this.carService.createCar(this.addCarForm.value, this.image).subscribe();
+    this.dialogRef.close();
   }
 }

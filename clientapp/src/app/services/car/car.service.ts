@@ -59,13 +59,6 @@ export class CarService {
     return this.http.post(
       environment.apiUrl + '/api/Car/createCar',
       formData,
-    ).subscribe(
-      response => {
-        console.log(response);
-      },
-      error => {
-        console.error(error);
-      }
-    );;
+    );
   }
 }
