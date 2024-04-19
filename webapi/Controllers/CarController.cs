@@ -4,23 +4,23 @@ using RentNRoll.Web.DTOs.Car;
 
 namespace webapi.Controllers
 {
-	[Route("api/[controller]")]
-	[Produces("application/json")]
-	[ApiController]
-	public class CarController : ControllerBase
-	{
-		private readonly ICarService _carService;
+    [Route("api/[controller]")]
+    [Produces("application/json")]
+    [ApiController]
+    public class CarController : ControllerBase
+    {
+        private readonly ICarService _carService;
 
-		public CarController(ICarService carService) => _carService = carService;
+        public CarController(ICarService carService) => _carService = carService;
 
-		[HttpGet("getCars")]
-		public async Task<ActionResult<PagedAndFilteredCarDTO<CarDTO>>> GetCars([FromQuery] CarQueryModel queryModel)
-		{
-			var pagedAndFilteredDto = await _carService.GetCarsPageAsync<CarDTO>(queryModel);
-			return Ok(pagedAndFilteredDto);
-		}
+        [HttpGet("getCars")]
+        public async Task<ActionResult<PagedAndFilteredCarDTO<CarDTO>>> GetCars([FromQuery] CarQueryModel queryModel)
+        {
+            var pagedAndFilteredDto = await _carService.GetCarsPageAsync<CarDTO>(queryModel);
+            return Ok(pagedAndFilteredDto);
+        }
 
-		[HttpGet("getAdminCars")]
+        [HttpGet("getAdminCars")]
         public async Task<ActionResult<PagedAndFilteredCarDTO<CarDetailsDTO>>> GetAdminCars([FromQuery] CarQueryModel queryModel)
         {
             var pagedAndFilteredDto = await _carService.GetCarsPageAsync<CarDetailsDTO>(queryModel);
@@ -28,25 +28,39 @@ namespace webapi.Controllers
         }
 
         [HttpGet("getCarDetails/{id}")]
-		public async Task<ActionResult<CarDetailsDTO>> GetCars(int id)
-		{
-			var carDetailsDTO = await _carService.GetCarDetailsAsync(id);
-			return Ok(carDetailsDTO);
-		}
+        public async Task<ActionResult<CarDetailsDTO>> GetCars(int id)
+        {
+            var carDetailsDTO = await _carService.GetCarDetailsAsync(id);
+            return Ok(carDetailsDTO);
+        }
 
-		[HttpPost("createCar")]
-		public async Task<IActionResult> CreateCar([FromForm] CreateCarDTO createCarDTO)
-		{
-			try
-			{
-				await _carService.CreateCarAsync(createCarDTO);
-				return Ok("Successfully created car.");
-			}
-			catch (Exception ex) 
-			{
-				Console.WriteLine(ex.Message);
-				return BadRequest(ex.Message);
-			}
-		}
-	}
+        [HttpPost("createCar")]
+        public async Task<IActionResult> CreateCar([FromForm] CreateCarDTO createCarDTO)
+        {
+            try
+            {
+                await _carService.CreateCarAsync(createCarDTO);
+                return Ok("Successfully created car.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("deleteCar/{id}")]
+        public async Task<IActionResult> DeleteCar(int id)
+        {
+            try
+            {
+                await _carService.DeleteCarByIdAsync(id);
+                return Ok("Successfully deleted car.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+    }
 }

@@ -8,6 +8,7 @@ import { MatSliderDragEvent } from '@angular/material/slider';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCarDialogComponent } from '../add-car-dialog/add-car-dialog.component';
+import { DeleteCarDialogComponent } from '../delete-car-dialog/delete-car-dialog.component';
 
 @Component({
   selector: 'app-admin-cars',
@@ -98,6 +99,14 @@ export class AdminCarsComponent implements OnInit {
   openAddCarDialog() {
     this.dialog.open(AddCarDialogComponent, {
       width: '1200px'
+    });
+  }
+
+  openDeleteCarDialog(id: number) {
+    this.dialog.open(DeleteCarDialogComponent, {
+      width: '1200px',
+      height: '600px',
+      data: { carId: id },
     });
   }
 

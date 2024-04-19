@@ -61,4 +61,10 @@ export class CarService {
       formData,
     );
   }
+
+  deleteCar(id: number) {
+    return this.http.delete(
+      environment.apiUrl + `/api/Car/deleteCar/${id}`,
+    );
+  }
 }

@@ -14,5 +14,7 @@ namespace RentNRoll.Services.Data.Cars
 		Task MakeCarUnavailableAsync(int id);
 
 		Task CreateCarAsync(CreateCarDTO createCarDTO);
+
+		Task DeleteCarByIdAsync(int id);
 	}
 }

@@ -89,5 +89,12 @@ namespace RentNRoll.Services.Data.Cars
             await _carRepository.AddAsync(car);
             await _carRepository.SaveChangesAsync();
         }
+
+        public async Task DeleteCarByIdAsync(int id)
+        {
+            var carToDelete = _carRepository.All().First(c => c.Id == id);
+            _carRepository.HardDelete(carToDelete);
+            await _carRepository.SaveChangesAsync();
+        }
     }
 }
