@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdminCarsDTO, CarDetailsDTO, CarQueryModel, FilteredAndPagedCarDTO } from '../../models/car.model';
 import { Observable } from 'rxjs';
@@ -44,5 +44,28 @@ export class CarService {
       environment.apiUrl + '/api/Car/getAdminCars',
       { params }
     );
+  }
+
+  createCar(createCarDTO: any, image: File) {
+    const formData = new FormData();
+    for (const key in createCarDTO) {
+      if (createCarDTO.hasOwnProperty(key)) {
+        // @ts-ignore
+        formData.append(key, createCarDTO[key]);
+      }
+    }
+    formData.append('image', image);
+
+    return this.http.post(
+      environment.apiUrl + '/api/Car/createCar',
+      formData,
+    ).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.error(error);
+      }
+    );;
   }
 }

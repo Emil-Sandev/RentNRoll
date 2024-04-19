@@ -1,0 +1,90 @@
+<h2 mat-dialog-title>Add Car</h2>
+<mat-dialog-content>
+    <form [formGroup]="addCarForm">
+        <div class="fields">
+            <div class="field-container">
+                <mat-form-field>
+                    <mat-label>Brand</mat-label>
+                    <mat-select formControlName="brand">
+                        @for (brand of brands; track brand) {
+                        <mat-option [value]="brand">{{brand}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="field-container">
+                <mat-form-field>
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category">
+                        @for (category of categories; track categories) {
+                        <mat-option [value]="category">{{category}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="fields">
+            <div class="field-container">
+                <mat-form-field>
+                    <mat-label>Model</mat-label>
+                    <input matInput formControlName="model">
+                </mat-form-field>
+            </div>
+
+            <div class="field-container">
+                <mat-form-field>
+                    <mat-label>Year</mat-label>
+                    <input matInput type="number" formControlName="year">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="fields">
+            <div class="field-container">
+                <div class="field-container">
+                    <mat-form-field>
+                        <mat-label>License plate</mat-label>
+                        <input matInput formControlName="licensePlate">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <mat-form-field>
+                    <mat-label>Price per day</mat-label>
+                    <input matInput type="number" formControlName="pricePerDay">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="fields">
+            <div class="field-container">
+                <mat-form-field>
+                    <mat-label>Seats</mat-label>
+                    <input matInput type="number" formControlName="seats">
+                </mat-form-field>
+            </div>
+
+            <div class="field-container">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" >
+            </div>
+        </div>
+
+        <div class="fields">
+            <div class="field-container">
+                <mat-form-field class="desc">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description" rows="5">
+                    </textarea>
+                </mat-form-field>
+            </div>
+        </div>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [disabled]="!addCarForm.valid" (click)="addCar()">Add</button>
+</mat-dialog-actions>

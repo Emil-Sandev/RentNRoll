@@ -6,6 +6,8 @@ import { CategoryService } from '../../services/category/category.service';
 import { CarService } from '../../services/car/car.service';
 import { MatSliderDragEvent } from '@angular/material/slider';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { AddCarDialogComponent } from '../add-car-dialog/add-car-dialog.component';
 
 @Component({
   selector: 'app-admin-cars',
@@ -29,11 +31,11 @@ export class AdminCarsComponent implements OnInit {
   queryModel: CarQueryModel = { currentPage: 1, carsPerPage: 5 } as CarQueryModel;
   adminCarsDTO: AdminCarsDTO = {} as AdminCarsDTO;
 
-  displayedColumns: string[] = ['model', 'brand', 'category', 'year', 'seats', 'pricePerDay', 'description'];
+  displayedColumns: string[] = ['model', 'brand', 'category', 'year', 'seats', 'pricePerDay', 'description', 'actions'];
   @ViewChild('paginator') paginator: MatPaginator = {} as MatPaginator;
 
 
-  constructor(private brandService: BrandService, private categoryService: CategoryService, private carService: CarService) { }
+  constructor(private brandService: BrandService, private categoryService: CategoryService, private carService: CarService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.brandService.getBrands().subscribe(data => {
@@ -91,6 +93,12 @@ export class AdminCarsComponent implements OnInit {
   handlePageEvent(event: PageEvent) {
     this.queryModel.currentPage = event.pageIndex + 1;
     this.refreshCars();
+  }
+
+  openAddCarDialog() {
+    this.dialog.open(AddCarDialogComponent, {
+      width: '1200px'
+    });
   }
 
   refreshCars() {

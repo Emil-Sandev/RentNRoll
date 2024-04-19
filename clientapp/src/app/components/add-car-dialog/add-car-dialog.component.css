@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+h2 {
+    margin: 0 auto;
+    font-size: xx-large !important;
+    margin-bottom: 3rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fields {
+    display: flex;
+    gap: 5rem;
+}
+
+.desc {
+    width: 30rem;
+}
