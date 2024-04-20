@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  constructor(private router: Router) {}
+
   luxurySlides = [
     { img: "https://i.imgur.com/Vwlvhe3.png" },
     { img: "https://i.imgur.com/Ua3nend.png" },
@@ -69,4 +72,8 @@ export class HomeComponent {
       },
     ]
   };
+
+  goToCars(){
+    this.router.navigate(['/cars']);
+  }
 }
