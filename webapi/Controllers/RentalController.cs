@@ -26,5 +26,12 @@ namespace webapi.Controllers
 				return StatusCode(500);
 			}
 		}
+
+		[HttpGet("getRentals/{page}")]
+		public async Task<ActionResult<RentalsAdminDTO>> GetRentals(int page)
+		{
+			var rentals = await _rentalService.GetRentals(page);
+			return Ok(rentals);
+		}
 	}
 }

@@ -38,6 +38,7 @@ import { MyRentalsComponent } from './components/my-rentals/my-rentals.component
 import { AdminCarsComponent } from './components/admin-cars/admin-cars.component';
 import { AddCarDialogComponent } from './components/add-car-dialog/add-car-dialog.component';
 import { DeleteCarDialogComponent } from './components/delete-car-dialog/delete-car-dialog.component';
+import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { DeleteCarDialogComponent } from './components/delete-car-dialog/delete-
     AdminCarsComponent,
     AddCarDialogComponent,
     DeleteCarDialogComponent,
+    AdminRentalsComponent,
   ],
   imports: [
     BrowserModule,

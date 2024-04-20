@@ -36,5 +36,25 @@ namespace RentNRoll.Services.Data.Rentals
 
 			return rentalDetails;
 		}
+
+		public async Task<RentalsAdminDTO> GetRentals(int page = 1)
+		{
+			var totalCount = await _rentalRepository.AllAsNoTracking().CountAsync();
+
+			// 5 rentals per page
+			var rentals = await _rentalRepository.AllAsNoTracking()
+				.Include(r => r.Customer)
+				.Include(r => r.Car)
+				.Skip((page - 1) * 5)
+				.Take(5)
+				.To<RentalAdminDTO>()
+				.ToListAsync();
+
+			return new RentalsAdminDTO
+			{
+				TotalCount = totalCount,
+				Rentals = rentals
+			};
+		}
 	}
 }

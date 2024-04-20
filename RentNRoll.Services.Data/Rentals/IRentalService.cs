@@ -7,5 +7,7 @@ namespace RentNRoll.Services.Data.Rentals
 		Task CreateRentalAsync(CreateRentalDTO createRentalDTO);
 
 		Task<IEnumerable<RentalDetailsUserDTO>> GetRentalDetailsByUsernameAsync(string username);
+
+		Task<RentalsAdminDTO> GetRentals(int page);
 	}
 }

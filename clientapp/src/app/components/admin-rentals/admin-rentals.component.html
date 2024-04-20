@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="rentals-container">
+        <table mat-table [dataSource]="rentalsAdminDTO.rentals" class="mat-elevation-z8">
+            <ng-container matColumnDef="customer">
+                <th mat-header-cell *matHeaderCellDef>Customer</th>
+                <td mat-cell *matCellDef="let rental">{{ rental.customer }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="customerEmail">
+                <th mat-header-cell *matHeaderCellDef>Customer email</th>
+                <td mat-cell *matCellDef="let rental">{{ rental.customerEmail }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef>Phone</th>
+                <td mat-cell *matCellDef="let rental">{{ rental.phone }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="egn">
+                <th mat-header-cell *matHeaderCellDef>EGN</th>
+                <td mat-cell *matCellDef="let rental">{{ rental.egn }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="model">
+                <th mat-header-cell *matHeaderCellDef>Model</th>
+                <td mat-cell *matCellDef="let rental">{{ rental.model }}</td>
+            </ng-container>
+          
+            <ng-container matColumnDef="brand">
+              <th mat-header-cell *matHeaderCellDef>Brand</th>
+              <td mat-cell *matCellDef="let rental">{{ rental.brand }}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef>Category</th>
+              <td mat-cell *matCellDef="let rental">{{ rental.category }}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="rentalDate">
+              <th mat-header-cell *matHeaderCellDef>Rental date</th>
+              <td mat-cell *matCellDef="let rental">{{ rental.rentalDate }}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="returnDate">
+              <th mat-header-cell *matHeaderCellDef>Return date</th>
+              <td mat-cell *matCellDef="let rental">{{ rental.returnDate }}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="totalPrice">
+              <th mat-header-cell *matHeaderCellDef>Total price</th>
+              <td mat-cell *matCellDef="let rental">{{ rental.totalPrice }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let rental">
+                    <!-- <button mat-button color="warn">Delete</button> -->
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator #paginator (page)="handlePageEvent($event)" [length]="rentalsAdminDTO.totalCount" [pageSize]="5"
+            [hidePageSize]="true" [pageIndex]="pageIndex" aria-label="Select page">
+        </mat-paginator>
+    </div>
+</div>
