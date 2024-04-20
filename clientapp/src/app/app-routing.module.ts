@@ -11,6 +11,7 @@ import { CancelComponent } from './components/cancel/cancel.component';
 import { MyRentalsComponent } from './components/my-rentals/my-rentals.component';
 import { AdminCarsComponent } from './components/admin-cars/admin-cars.component';
 import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'my-rentals', component: MyRentalsComponent, canActivate: [AuthGuard] },
   { path: 'admin/cars', component: AdminCarsComponent },
   { path: 'admin/rentals', component: AdminRentalsComponent },
+  { path: 'admin/users', component: AdminUsersComponent },
 ];
 
 @NgModule({

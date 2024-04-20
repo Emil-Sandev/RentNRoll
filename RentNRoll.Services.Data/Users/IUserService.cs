@@ -1,4 +1,5 @@
 ﻿using RentNRoll.Data.Models;
+using RentNRoll.Web.DTOs.User;
 
 namespace RentNRoll.Services.Data.Users
 {
@@ -7,5 +8,9 @@ namespace RentNRoll.Services.Data.Users
 		Task<bool> ExistsByEgnAsync(string egn);
 
 		string GetUserIdByEmail(string email);
+
+		Task<UsersAdminDTO> GetUsersInfoAsync(int page);
+
+		Task DeleteUserByUsernameAsync(string username);
 	}
 }

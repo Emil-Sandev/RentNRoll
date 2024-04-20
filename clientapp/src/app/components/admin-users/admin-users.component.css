@@ -1,0 +1,15 @@
+.container {
+    margin: 3rem;
+    width: 90%;
+}
+
+th {
+    background-color: #FF9800 !important;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+td {
+    font-size: 15px;
+}
