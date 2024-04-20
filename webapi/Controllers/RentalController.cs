@@ -33,5 +33,12 @@ namespace webapi.Controllers
 			var rentals = await _rentalService.GetRentals(page);
 			return Ok(rentals);
 		}
+
+		[HttpDelete("deleteRental/{model}")]
+		public async Task<IActionResult> DeleteRental(string model)
+		{
+			await _rentalService.DeleteRentalByCarModelAsync(model);
+			return Ok("Successfully deleted rental");
+		}
 	}
 }

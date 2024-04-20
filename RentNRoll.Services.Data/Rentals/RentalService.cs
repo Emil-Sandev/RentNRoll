@@ -25,6 +25,16 @@ namespace RentNRoll.Services.Data.Rentals
 			await _rentalRepository.SaveChangesAsync();
 		}
 
+		public async Task DeleteRentalByCarModelAsync(string model)
+		{
+			var carId = _carService.GetCarIdByModel(model);
+			var rentalToDelete = await _rentalRepository.AllAsNoTracking()
+				.FirstAsync(r => r.CarId == carId);
+			
+			_rentalRepository.Delete(rentalToDelete);
+			await _rentalRepository.SaveChangesAsync();
+		}
+
 		public async Task<IEnumerable<RentalDetailsUserDTO>> GetRentalDetailsByUsernameAsync(string username)
 		{
 			var rentalDetails = await _rentalRepository.AllAsNoTracking()

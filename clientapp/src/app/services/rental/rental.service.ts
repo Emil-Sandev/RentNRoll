@@ -23,4 +23,10 @@ export class RentalService {
       environment.apiUrl + `/api/Rental/getRentals/${page}`
     );
   }
+
+  deleteRental(model: string) {
+    return this.http.delete(
+      environment.apiUrl + `/api/Rental/deleteRental/${model}`
+    );
+  }
 }
