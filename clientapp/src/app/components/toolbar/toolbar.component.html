@@ -5,8 +5,9 @@
   @if(isAdmin.value) {
     <button mat-button [matMenuTriggerFor]="menu">Admin Panel</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Cars</button>
-      <button mat-menu-item>Rentals</button>
+      <button mat-menu-item (click)="goToUsers()">Users</button>
+      <button mat-menu-item (click)="goToCars()">Cars</button>
+      <button mat-menu-item (click)="goToRentals()">Rentals</button>
     </mat-menu>
   }
 </mat-toolbar>

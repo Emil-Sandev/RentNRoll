@@ -22,9 +22,9 @@ const routes: Routes = [
   { path: 'success', component: SuccessComponent, canActivate: [AuthGuard] },
   { path: 'cancel', component: CancelComponent, canActivate: [AuthGuard] },
   { path: 'my-rentals', component: MyRentalsComponent, canActivate: [AuthGuard] },
-  { path: 'admin/cars', component: AdminCarsComponent },
-  { path: 'admin/rentals', component: AdminRentalsComponent },
-  { path: 'admin/users', component: AdminUsersComponent },
+  { path: 'admin/cars', component: AdminCarsComponent, canActivate: [AuthGuard] },
+  { path: 'admin/rentals', component: AdminRentalsComponent, canActivate: [AuthGuard] },
+  { path: 'admin/users', component: AdminUsersComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
